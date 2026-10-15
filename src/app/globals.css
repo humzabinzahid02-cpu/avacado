@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-forest: #163D29;
+  --color-avocado: #245A35;
+  --color-leaf: #568C42;
+  --color-lime: #A8D957;
+  --color-sage: #DCE8D1;
+  --color-pistachio: #EDF4E5;
+  --color-cream: #FAF9F2;
+  --color-white: #FFFFFF;
+  --color-text-dark: #183C2A;
+  
+  --background: #FAF9F2;
+  --foreground: #183C2A;
+}
+
+@theme {
+  --color-forest: #163D29;
+  --color-avocado: #245A35;
+  --color-leaf: #568C42;
+  --color-lime: #A8D957;
+  --color-sage: #DCE8D1;
+  --color-pistachio: #EDF4E5;
+  --color-cream: #FAF9F2;
+  --color-darkgreen: #183C2A;
+
+  --font-arabic: 'Tajawal', 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-latin: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+  font-family: 'Tajawal', 'Cairo', 'Outfit', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EDF4E5;
+}
+::-webkit-scrollbar-thumb {
+  background: #568C42;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #245A35;
+}
+
+/* Glassmorphism & Soft Card Styles */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 232, 209, 0.7);
+}
+
+.glass-panel-dark {
+  background: rgba(22, 61, 41, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(86, 140, 66, 0.3);
+}
+
+.avocado-gradient {
+  background: linear-gradient(135deg, #163D29 0%, #245A35 50%, #163D29 100%);
+}
+
+.lime-glow {
+  box-shadow: 0 0 25px rgba(168, 217, 87, 0.4);
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px -10px rgba(22, 61, 41, 0.12);
+}
