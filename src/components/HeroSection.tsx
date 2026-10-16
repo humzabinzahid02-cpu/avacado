@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { ArrowLeftIcon, ArrowRightIcon } from './Icons';
@@ -9,8 +9,19 @@ import { MaterialIcon } from './MaterialIcon';
 export const HeroSection: React.FC = () => {
   const { t, dir } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
+    // Delay video loading so the page paints instantly with the poster image
+    const loadTimer = setTimeout(() => {
+      setVideoReady(true);
+    }, 100);
+
+    return () => clearTimeout(loadTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!videoReady) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -19,16 +30,21 @@ export const HeroSection: React.FC = () => {
     (video as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
 
     const playVideo = () => {
-      const promise = video.play();
-      if (promise !== undefined) {
-        promise.catch(() => {
-          // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
-        });
-      }
+      // Wait a moment for the video to buffer enough to start
+      const playTimer = setTimeout(() => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
+          });
+        }
+      }, 500);
+      return playTimer;
     };
 
-    playVideo();
-  }, []);
+    const timer = playVideo();
+    return () => clearTimeout(timer);
+  }, [videoReady]);
 
   return (
     <section
@@ -47,15 +63,19 @@ export const HeroSection: React.FC = () => {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           poster="/assets/hero-poster.jpg"
           disablePictureInPicture
           suppressHydrationWarning
           className="w-full h-full object-cover object-center"
         >
-          {/* Public root path for optimal CDN routing */}
-          <source src="/hero-video.mp4" type="video/mp4" />
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
+          {/* Only inject video sources after mount so poster shows instantly */}
+          {videoReady && (
+            <>
+              <source src="/hero-video.mp4" type="video/mp4" />
+              <source src="/assets/hero-video.mp4" type="video/mp4" />
+            </>
+          )}
         </video>
 
         {/* Cinematic gradient overlay for perfect readability across all viewports */}
