@@ -33,8 +33,8 @@ export const FeaturedProductsSection: React.FC = () => {
 
         {/* 6 Products Grid (Matching Mockup input_file_0.png) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-          {featured.map((product, index) => (
-            <ProductCard key={product.id} product={product} priority={index < 4} />
+          {featured.map((product) => (
+            <ProductCard key={product.id} product={product} priority={true} />
           ))}
         </div>
 

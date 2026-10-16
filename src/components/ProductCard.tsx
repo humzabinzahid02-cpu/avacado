@@ -53,6 +53,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, priority = fa
             priority={priority}
             loading={priority ? 'eager' : 'lazy'}
             quality={85}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
             className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-105"
           />
         </Link>

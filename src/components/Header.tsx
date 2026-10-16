@@ -82,13 +82,26 @@ export const Header: React.FC = () => {
           <Link href="/" className="flex items-center gap-2 shrink-0 group">
             <div className="relative w-32 sm:w-44 2xl:w-52 h-10 sm:h-12 flex items-center">
               <Image
-                src={isTransparent ? '/assets/logo-horizontal-light.png' : '/assets/logo-horizontal-dark.png'}
+                src="/assets/logo-horizontal-light.png"
                 alt="فن الأفوكادو - Avocado Art"
                 width={200}
                 height={55}
                 sizes="(max-width: 640px) 130px, (max-width: 1536px) 180px, 210px"
                 priority
-                className="object-contain h-full w-auto transition-transform duration-300 group-hover:scale-105"
+                className={`object-contain h-full w-auto transition-opacity duration-300 absolute inset-0 ${
+                  isTransparent ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
+              />
+              <Image
+                src="/assets/logo-horizontal-dark.png"
+                alt="فن الأفوكادو - Avocado Art"
+                width={200}
+                height={55}
+                sizes="(max-width: 640px) 130px, (max-width: 1536px) 180px, 210px"
+                priority
+                className={`object-contain h-full w-auto transition-opacity duration-300 ${
+                  !isTransparent ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
               />
             </div>
           </Link>

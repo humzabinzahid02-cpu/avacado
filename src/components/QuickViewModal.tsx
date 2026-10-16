@@ -65,6 +65,9 @@ export const QuickViewModal: React.FC = () => {
               height={400}
               sizes="(max-width: 768px) 90vw, 400px"
               quality={85}
+              priority
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
               className="object-cover w-full h-full rounded-xl"
             />
           </div>

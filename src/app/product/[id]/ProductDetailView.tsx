@@ -79,8 +79,10 @@ export function ProductDetailView({ id }: { id: string }) {
                   width={550}
                   height={550}
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 550px"
-                  quality={90}
+                  quality={85}
                   priority
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTUwIiBoZWlnaHQ9IjU1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
                   className="object-cover w-full h-full rounded-xl transition-transform duration-500 hover:scale-105"
                 />
 

@@ -29,6 +29,8 @@ export const PromoBanner: React.FC = () => {
                   height={130}
                   sizes="(max-width: 640px) 130px, 180px"
                   quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjEzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
                   className="object-cover w-full h-full rounded-2xl drop-shadow-xl"
                 />
               </div>

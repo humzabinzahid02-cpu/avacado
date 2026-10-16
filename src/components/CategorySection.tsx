@@ -44,9 +44,11 @@ export const CategorySection: React.FC = () => {
                   width={100}
                   height={100}
                   sizes="(max-width: 640px) 64px, 80px"
-                  priority={index < 5}
-                  loading={index < 5 ? 'eager' : 'lazy'}
+                  priority={true}
+                  loading="eager"
                   quality={80}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
                   className="object-cover w-full h-full rounded-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>

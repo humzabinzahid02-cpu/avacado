@@ -62,6 +62,8 @@ export function CategoryView({ slug }: { slug: string }) {
               sizes="(max-width: 640px) 140px, 180px"
               quality={85}
               priority
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
               className="object-contain w-full h-full drop-shadow-xl"
             />
           </div>
