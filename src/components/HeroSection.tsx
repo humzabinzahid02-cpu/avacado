@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { ArrowLeftIcon, ArrowRightIcon } from './Icons';
@@ -9,7 +9,6 @@ import { MaterialIcon } from './MaterialIcon';
 export const HeroSection: React.FC = () => {
   const { t, dir } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -19,33 +18,16 @@ export const HeroSection: React.FC = () => {
     video.muted = true;
     (video as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
 
-    const handlePlay = () => {
-      setIsVideoPlaying(true);
-    };
-
-    video.addEventListener('playing', handlePlay);
-
-    const tryPlay = () => {
+    const playVideo = () => {
       const promise = video.play();
       if (promise !== undefined) {
-        promise
-          .then(() => setIsVideoPlaying(true))
-          .catch(() => {
-            // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
-          });
+        promise.catch(() => {
+          // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
+        });
       }
     };
 
-    if (video.readyState >= 2) {
-      tryPlay();
-    } else {
-      video.addEventListener('canplay', tryPlay, { once: true });
-    }
-
-    return () => {
-      video.removeEventListener('playing', handlePlay);
-      video.removeEventListener('canplay', tryPlay);
-    };
+    playVideo();
   }, []);
 
   return (
@@ -57,7 +39,7 @@ export const HeroSection: React.FC = () => {
         backgroundPosition: 'center',
       }}
     >
-      {/* ───── 1. Background Video with Instant Poster & Smooth Fade-in ───── */}
+      {/* ───── 1. Background Video with Instant Poster ───── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           ref={videoRef}
@@ -65,13 +47,11 @@ export const HeroSection: React.FC = () => {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/assets/hero-poster.jpg"
           disablePictureInPicture
           suppressHydrationWarning
-          className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
-            isVideoPlaying ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="w-full h-full object-cover object-center"
         >
           {/* Public root path for optimal CDN routing */}
           <source src="/hero-video.mp4" type="video/mp4" />
