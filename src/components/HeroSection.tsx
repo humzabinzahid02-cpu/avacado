@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { ArrowLeftIcon, ArrowRightIcon } from './Icons';
@@ -9,22 +9,33 @@ import { MaterialIcon } from './MaterialIcon';
 export const HeroSection: React.FC = () => {
   const { t, dir } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Force muted (required for autoplay policy on all browsers)
+    // Enforce muted settings required by browser autoplay policies
     video.muted = true;
     (video as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
 
-    const tryPlay = () => {
-      video.play().catch(() => {
-        // Autoplay blocked — the static dark background remains visible
-      });
+    const handlePlay = () => {
+      setIsVideoPlaying(true);
     };
 
-    // If already ready, play immediately; otherwise wait for canplay
+    video.addEventListener('playing', handlePlay);
+
+    const tryPlay = () => {
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise
+          .then(() => setIsVideoPlaying(true))
+          .catch(() => {
+            // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
+          });
+      }
+    };
+
     if (video.readyState >= 2) {
       tryPlay();
     } else {
@@ -32,46 +43,60 @@ export const HeroSection: React.FC = () => {
     }
 
     return () => {
+      video.removeEventListener('playing', handlePlay);
       video.removeEventListener('canplay', tryPlay);
     };
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[540px] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0a1a0f] text-white select-none">
-
-      {/* ───── 1. Background Video ───── */}
-      <div className="absolute inset-0 z-0">
+    <section
+      className="relative w-full h-[100dvh] min-h-[500px] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0a1a0f] text-white select-none"
+      style={{
+        backgroundImage: "url('/assets/hero-poster.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* ───── 1. Background Video with Instant Poster & Smooth Fade-in ───── */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster="/assets/hero-poster.jpg"
           disablePictureInPicture
           suppressHydrationWarning
-          className="w-full h-full object-cover object-center"
+          className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
+            isVideoPlaying ? 'opacity-100' : 'opacity-0'
+          }`}
         >
-          {/* Primary path at public root – simplest for Vercel CDN */}
+          {/* Public root path for optimal CDN routing */}
           <source src="/hero-video.mp4" type="video/mp4" />
-          {/* Secondary path inside /assets */}
           <source src="/assets/hero-video.mp4" type="video/mp4" />
         </video>
 
-        {/* Cinematic gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/75 pointer-events-none" />
+        {/* Cinematic gradient overlay for perfect readability across all viewports */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/80 pointer-events-none" />
 
-        {/* Radial vignette */}
+        {/* Vignette effect */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%)' }}
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)',
+          }}
         />
       </div>
 
       {/* ───── 2. Side Indicator Dots (Desktop) ───── */}
       <div
         className="hidden lg:flex absolute top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-2.5"
-        style={{ [dir === 'rtl' ? 'left' : 'right']: 'auto', left: dir === 'rtl' ? '24px' : 'auto', right: dir !== 'rtl' ? '24px' : 'auto' }}
+        style={{
+          left: dir === 'rtl' ? '24px' : 'auto',
+          right: dir !== 'rtl' ? '24px' : 'auto',
+        }}
       >
         {[0, 1, 2].map((i) => (
           <div
@@ -83,36 +108,38 @@ export const HeroSection: React.FC = () => {
         ))}
       </div>
 
-      {/* ───── 3. Navbar Spacer ───── */}
+      {/* ───── 3. Navbar Clear Spacer ───── */}
       <div className="h-16 sm:h-20 shrink-0" />
 
-      {/* ───── 4. Hero Content ───── */}
+      {/* ───── 4. Centered Hero Content (Engineered for Phone, Laptop & Desktop) ───── */}
       <div className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 my-auto text-center flex flex-col items-center justify-center">
 
-        {/* Tagline */}
+        {/* Tagline Badge */}
         <div className="inline-flex items-center justify-center gap-2 mb-2 sm:mb-3">
-          <span className="w-4 sm:w-6 h-px bg-[#A8D957]/70" />
-          <span className="text-[#c5e98d] text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+          <span className="w-3 sm:w-6 h-px bg-[#A8D957]/70" />
+          <span className="text-[#c5e98d] text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.18em] uppercase">
             {t('طبيعي • طازج • صحي', 'NATURAL • FRESH • HEALTHY')}
           </span>
-          <span className="w-4 sm:w-6 h-px bg-[#A8D957]/70" />
+          <span className="w-3 sm:w-6 h-px bg-[#A8D957]/70" />
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.12] tracking-tight mb-2 sm:mb-3 drop-shadow-2xl">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight sm:leading-[1.12] tracking-tight mb-2 sm:mb-3 drop-shadow-2xl">
           <span className="block text-white">
             {t('خير الأفوكادو', 'The Best of Avocado')}
           </span>
           <span
             className="block text-[#A8D957]"
-            style={{ textShadow: '0 0 35px rgba(168, 217, 87, 0.35), 0 4px 16px rgba(0,0,0,0.6)' }}
+            style={{
+              textShadow: '0 0 35px rgba(168, 217, 87, 0.4), 0 4px 16px rgba(0,0,0,0.7)',
+            }}
           >
             {t('في كل كوب', 'In Every Cup')}
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs sm:text-sm md:text-base text-white/85 max-w-md mx-auto leading-relaxed font-medium mb-4 sm:mb-6 drop-shadow-md">
+        <p className="text-xs sm:text-sm md:text-base text-white/90 max-w-xs sm:max-w-md mx-auto leading-relaxed font-medium mb-4 sm:mb-6 drop-shadow-md">
           {t(
             'مكونات طبيعية 100%.. مشروب صحي ولذيذ.',
             '100% natural ingredients.. a healthy & delicious drink.'
@@ -122,7 +149,7 @@ export const HeroSection: React.FC = () => {
         {/* CTA Button */}
         <Link
           href="/shop"
-          className="group inline-flex items-center gap-2.5 px-7 sm:px-9 py-2.5 sm:py-3.5 rounded-full bg-[#A8D957] hover:bg-[#bbf069] text-[#163D29] font-black text-xs sm:text-sm shadow-xl shadow-[#A8D957]/25 transition-all duration-300 transform hover:scale-105 active:scale-95"
+          className="group inline-flex items-center gap-2 px-6 sm:px-9 py-2.5 sm:py-3.5 rounded-full bg-[#A8D957] hover:bg-[#bbf069] text-[#163D29] font-black text-xs sm:text-sm shadow-xl shadow-[#A8D957]/30 transition-all duration-300 transform hover:scale-105 active:scale-95"
         >
           <span>{t('اكتشف قائمتنا', 'Explore Our Menu')}</span>
           {dir === 'rtl' ? (
@@ -133,41 +160,41 @@ export const HeroSection: React.FC = () => {
         </Link>
       </div>
 
-      {/* ───── 5. Trust Badges Bar ───── */}
-      <div className="relative z-10 w-full bg-black/45 backdrop-blur-md border-t border-white/10 shrink-0">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3 grid grid-cols-3 gap-2 text-center">
+      {/* ───── 5. Bottom Trust Badges Bar (Responsive Grid for Phones & Laptops) ───── */}
+      <div className="relative z-10 w-full bg-black/50 backdrop-blur-md border-t border-white/10 shrink-0">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6 py-2 sm:py-2.5 grid grid-cols-3 gap-1 sm:gap-2 text-center">
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 text-white/80">
-            <MaterialIcon name="eco" size={16} className="text-[#A8D957]" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-white/90">
+            <MaterialIcon name="eco" size={16} className="text-[#A8D957] shrink-0" />
             <div>
               <span className="text-[10px] sm:text-xs font-bold block leading-tight">
                 {t('مكونات طبيعية', 'Natural Ingredients')}
               </span>
-              <span className="text-[9px] sm:text-[10px] text-white/50 font-semibold">
+              <span className="text-[9px] sm:text-[10px] text-white/60 font-semibold">
                 {t('%100', '100%')}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 text-white/80">
-            <MaterialIcon name="eco" size={16} className="text-[#A8D957]" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-white/90">
+            <MaterialIcon name="eco" size={16} className="text-[#A8D957] shrink-0" />
             <div>
               <span className="text-[10px] sm:text-xs font-bold block leading-tight">
                 {t('غني بالعناصر', 'Rich in Nutrients')}
               </span>
-              <span className="text-[9px] sm:text-[10px] text-white/50 font-semibold">
+              <span className="text-[9px] sm:text-[10px] text-white/60 font-semibold">
                 {t('الغذائية', 'Essential')}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 text-white/80">
-            <MaterialIcon name="bolt" size={16} className="text-[#A8D957]" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-white/90">
+            <MaterialIcon name="bolt" size={16} className="text-[#A8D957] shrink-0" />
             <div>
               <span className="text-[10px] sm:text-xs font-bold block leading-tight">
                 {t('يعزز الطاقة', 'Boosts Energy')}
               </span>
-              <span className="text-[9px] sm:text-[10px] text-white/50 font-semibold">
+              <span className="text-[9px] sm:text-[10px] text-white/60 font-semibold">
                 {t('والنشاط', '& Vitality')}
               </span>
             </div>
@@ -175,7 +202,6 @@ export const HeroSection: React.FC = () => {
 
         </div>
       </div>
-
     </section>
   );
 };

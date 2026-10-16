@@ -23,6 +23,7 @@ export const Footer: React.FC = () => {
                 alt="فن الأفوكادو - Avocado Art"
                 width={190}
                 height={55}
+                sizes="190px"
                 className="object-contain h-12 w-auto"
               />
             </Link>

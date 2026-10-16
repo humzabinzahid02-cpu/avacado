@@ -114,6 +114,8 @@ export const CartDrawer: React.FC = () => {
                     alt={item.product.nameAr}
                     width={70}
                     height={70}
+                    sizes="70px"
+                    quality={80}
                     className="object-contain max-h-16 w-auto"
                   />
                 </div>

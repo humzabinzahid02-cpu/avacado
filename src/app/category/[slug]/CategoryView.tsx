@@ -59,6 +59,9 @@ export function CategoryView({ slug }: { slug: string }) {
               alt={category.nameAr}
               width={160}
               height={160}
+              sizes="(max-width: 640px) 140px, 180px"
+              quality={85}
+              priority
               className="object-contain w-full h-full drop-shadow-xl"
             />
           </div>

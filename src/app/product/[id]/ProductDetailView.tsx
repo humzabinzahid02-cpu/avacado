@@ -76,8 +76,10 @@ export function ProductDetailView({ id }: { id: string }) {
                 <Image
                   src={product.image}
                   alt={product.nameAr}
-                  width={600}
-                  height={600}
+                  width={550}
+                  height={550}
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 550px"
+                  quality={90}
                   priority
                   className="object-cover w-full h-full rounded-xl transition-transform duration-500 hover:scale-105"
                 />

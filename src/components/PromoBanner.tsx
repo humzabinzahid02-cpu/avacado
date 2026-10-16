@@ -27,6 +27,8 @@ export const PromoBanner: React.FC = () => {
                   alt="نكهات تجمعنا"
                   width={180}
                   height={130}
+                  sizes="(max-width: 640px) 130px, 180px"
+                  quality={85}
                   className="object-cover w-full h-full rounded-2xl drop-shadow-xl"
                 />
               </div>

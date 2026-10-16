@@ -74,6 +74,7 @@ export default function AboutPage() {
                   alt="Avocado Art"
                   width={160}
                   height={80}
+                  sizes="160px"
                   className="object-contain"
                 />
               </div>

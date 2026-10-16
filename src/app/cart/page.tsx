@@ -96,6 +96,8 @@ export default function CartPage() {
                           alt={item.product.nameAr}
                           width={75}
                           height={75}
+                          sizes="75px"
+                          quality={80}
                           className="object-contain max-h-16 w-auto"
                         />
                       </div>

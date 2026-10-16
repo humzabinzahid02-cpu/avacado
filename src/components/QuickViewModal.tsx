@@ -63,6 +63,8 @@ export const QuickViewModal: React.FC = () => {
               alt={quickViewProduct.nameAr}
               width={400}
               height={400}
+              sizes="(max-width: 768px) 90vw, 400px"
+              quality={85}
               className="object-cover w-full h-full rounded-xl"
             />
           </div>

@@ -11,13 +11,13 @@ export const CategorySection: React.FC = () => {
   const { t, dir } = useLanguage();
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-8 bg-white border-b border-[#EDF4E5]/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-6">
+        {/* Header: الأقسام - عرض الكل */}
+        <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl sm:text-2xl font-black text-[#183C2A] tracking-tight">
-            {t('تسوق حسب الفئة', 'Shop by Category')}
+            {t('الأقسام', 'Categories')}
           </h2>
           <Link
             href="/shop"
@@ -30,7 +30,7 @@ export const CategorySection: React.FC = () => {
 
         {/* 9 Category Cards Row (Matching Mockup input_file_0.png) */}
         <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2.5 sm:gap-3">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Link
               key={category.slug}
               href={`/category/${category.slug}`}
@@ -41,8 +41,12 @@ export const CategorySection: React.FC = () => {
                 <Image
                   src={category.image}
                   alt={category.nameAr}
-                  width={160}
-                  height={160}
+                  width={100}
+                  height={100}
+                  sizes="(max-width: 640px) 64px, 80px"
+                  priority={index < 5}
+                  loading={index < 5 ? 'eager' : 'lazy'}
+                  quality={80}
                   className="object-cover w-full h-full rounded-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>

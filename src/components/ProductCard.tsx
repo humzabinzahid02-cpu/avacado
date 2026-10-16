@@ -10,9 +10,10 @@ import { HeartIcon, ShoppingBagIcon } from './Icons';
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, priority = false }) => {
   const { t, language } = useLanguage();
   const { addToCart, isInWishlist, toggleWishlist } = useCart();
 
@@ -46,8 +47,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Image
             src={product.image}
             alt={product.nameAr}
-            width={400}
-            height={400}
+            width={320}
+            height={320}
+            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 200px, 240px"
+            priority={priority}
+            loading={priority ? 'eager' : 'lazy'}
+            quality={85}
             className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-105"
           />
         </Link>

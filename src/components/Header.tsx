@@ -86,6 +86,7 @@ export const Header: React.FC = () => {
                 alt="فن الأفوكادو - Avocado Art"
                 width={200}
                 height={55}
+                sizes="(max-width: 640px) 130px, (max-width: 1536px) 180px, 210px"
                 priority
                 className="object-contain h-full w-auto transition-transform duration-300 group-hover:scale-105"
               />
