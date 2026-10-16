@@ -7,7 +7,7 @@ import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { XIcon, PlusIcon, MinusIcon, TrashIcon, ShoppingBagIcon } from './Icons';
 import { MaterialIcon } from './MaterialIcon';
-
+// {}
 export const CartDrawer: React.FC = () => {
   const { isCartOpen, setIsCartOpen, items, updateQuantity, removeFromCart, subtotal, deliveryFee, total, clearCart } = useCart();
   const { t, dir, language } = useLanguage();
