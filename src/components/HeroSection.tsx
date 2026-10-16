@@ -9,19 +9,9 @@ import { MaterialIcon } from './MaterialIcon';
 export const HeroSection: React.FC = () => {
   const { t, dir } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
-    // Delay video loading so the page paints instantly with the poster image
-    const loadTimer = setTimeout(() => {
-      setVideoReady(true);
-    }, 100);
-
-    return () => clearTimeout(loadTimer);
-  }, []);
-
-  useEffect(() => {
-    if (!videoReady) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -29,22 +19,24 @@ export const HeroSection: React.FC = () => {
     video.muted = true;
     (video as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
 
-    const playVideo = () => {
-      // Wait a moment for the video to buffer enough to start
-      const playTimer = setTimeout(() => {
-        const promise = video.play();
-        if (promise !== undefined) {
-          promise.catch(() => {
-            // Autoplay blocked by battery saver / browser policy - poster stays visible gracefully
-          });
-        }
-      }, 500);
-      return playTimer;
+    // Attempt direct autoplay
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked by battery saver - poster stays visible gracefully
+      });
+    }
+
+    // Resume video playback when tab becomes visible again
+    const handleVisibility = () => {
+      if (!document.hidden && video.paused) {
+        video.play().catch(() => {});
+      }
     };
 
-    const timer = playVideo();
-    return () => clearTimeout(timer);
-  }, [videoReady]);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
 
   return (
     <section
@@ -59,24 +51,20 @@ export const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           ref={videoRef}
+          src="/hero-video.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="none"
+          preload="auto"
           poster="/assets/hero-poster.jpg"
           disablePictureInPicture
           suppressHydrationWarning
-          className="w-full h-full object-cover object-center"
-        >
-          {/* Only inject video sources after mount so poster shows instantly */}
-          {videoReady && (
-            <>
-              <source src="/hero-video.mp4" type="video/mp4" />
-              <source src="/assets/hero-video.mp4" type="video/mp4" />
-            </>
-          )}
-        </video>
+          onPlaying={() => setIsVideoLoaded(true)}
+          className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
+            isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
 
         {/* Cinematic gradient overlay for perfect readability across all viewports */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/80 pointer-events-none" />
