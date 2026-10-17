@@ -37,9 +37,7 @@ export const MainContent: React.FC<{ children: React.ReactNode }> = ({ children 
       </div>
 
       <main className={`flex-1 ${isHome ? '' : 'pt-16 sm:pt-20'}`}>
-        <div key={pathname} className="page-transition">
-          {children}
-        </div>
+        {children}
       </main>
     </>
   );
