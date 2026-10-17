@@ -15,17 +15,27 @@ export const HeroSection: React.FC = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Enforce muted settings required by browser autoplay policies
+    // Enforce muted and playsinline settings required by iOS Safari & Android Chrome
     video.muted = true;
     (video as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
 
     // Attempt direct autoplay
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // Autoplay blocked by battery saver - poster stays visible gracefully
+        // Handled gracefully: poster remains visible if low-power mode blocks autoplay
       });
     }
+
+    // On mobile devices where autoplay is blocked until first gesture, start on first touch
+    const handleTouch = () => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+    window.addEventListener('touchstart', handleTouch, { passive: true, once: true });
 
     // Resume video playback when tab becomes visible again
     const handleVisibility = () => {
@@ -35,12 +45,15 @@ export const HeroSection: React.FC = () => {
     };
 
     document.addEventListener('visibilitychange', handleVisibility);
-    return () => document.removeEventListener('visibilitychange', handleVisibility);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('touchstart', handleTouch);
+    };
   }, []);
 
   return (
     <section
-      className="relative w-full h-[100dvh] min-h-[500px] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#0a1a0f] text-white select-none"
+      className="relative w-full h-[88dvh] sm:h-[100dvh] min-h-[500px] flex flex-col justify-between overflow-hidden bg-[#0a1a0f] text-white select-none"
       style={{
         backgroundImage: "url('/assets/hero-poster.jpg')",
         backgroundSize: 'cover',
@@ -60,10 +73,7 @@ export const HeroSection: React.FC = () => {
           poster="/assets/hero-poster.jpg"
           disablePictureInPicture
           suppressHydrationWarning
-          onPlaying={() => setIsVideoLoaded(true)}
-          className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="w-full h-full object-cover object-[center_35%] md:object-center"
         />
 
         {/* Cinematic gradient overlay for perfect readability across all viewports */}
