@@ -107,7 +107,7 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* 2. NAVIGATION LINKS (Center) */}
-          <nav className={`hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-bold ${textColor}`}>
+          <nav className={`hidden lg:flex items-center gap-4 xl:gap-7 text-sm font-bold whitespace-nowrap ${textColor}`}>
             
             {/* Home */}
             <Link
@@ -193,19 +193,19 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            <Link href="/offers" className={`py-2 ${hoverColor} transition-colors`}>
+            <Link href="/offers" className={`py-2 ${hoverColor} transition-colors whitespace-nowrap`}>
               {t('العروض', 'Offers')}
             </Link>
 
-            <Link href="/branches" className={`py-2 ${hoverColor} transition-colors`}>
+            <Link href="/branches" className={`py-2 ${hoverColor} transition-colors whitespace-nowrap`}>
               {t('الفروع', 'Branches')}
             </Link>
 
-            <Link href="/about" className={`py-2 ${hoverColor} transition-colors`}>
-              {t('من نحن', 'About Us')}
+            <Link href="/about" className={`py-2 ${hoverColor} transition-colors whitespace-nowrap`}>
+              {t('من نحن', 'About')}
             </Link>
 
-            <Link href="/contact" className={`py-2 ${hoverColor} transition-colors`}>
+            <Link href="/contact" className={`py-2 ${hoverColor} transition-colors whitespace-nowrap`}>
               {t('اتصل بنا', 'Contact')}
             </Link>
           </nav>
@@ -327,7 +327,7 @@ export const Header: React.FC = () => {
               {t('الفروع', 'Branches')}
             </Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100">
-              {t('من نحن', 'About Us')}
+              {t('من نحن', 'About')}
             </Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100">
               {t('اتصل بنا', 'Contact')}

@@ -113,7 +113,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/about" className="hover:text-[#A8D957] transition-colors">
-                  {t('من نحن', 'About Us')}
+                  {t('من نحن', 'About')}
                 </Link>
               </li>
               <li>
