@@ -91,3 +91,39 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 14px 30px -10px rgba(22, 61, 41, 0.12);
 }
+
+/* Page Transition & Loading Bar Animations */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageEnter 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes progressFast {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 65%;
+  }
+  75% {
+    width: 88%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-fast {
+  animation: progressFast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
