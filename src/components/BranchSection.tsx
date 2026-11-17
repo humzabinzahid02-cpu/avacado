@@ -3,38 +3,35 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { branches } from '@/data/branches';
-import { MapPinIcon, PhoneIcon, ClockIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons';
+import { branches, businessInfo } from '@/data/branches';
+import { MapPinIcon, PhoneIcon, ClockIcon, ArrowLeftIcon, ArrowRightIcon, NavigationIcon, WhatsAppIcon } from './Icons';
 import { MaterialIcon } from './MaterialIcon';
 
 export const BranchSection: React.FC = () => {
   const { t, dir, language } = useLanguage();
 
   return (
-    <section className="py-14 bg-[#FAF9F2]">
+    <section className="py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EDF4E5] text-[#245A35] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5D8] text-[#287A3D] text-xs font-bold mb-2 border border-[#DCEBD3]">
               <MaterialIcon name="location_on" size={15} />
-              <span>{t('فروعنا في المملكة العربية السعودية', 'Our Branches in Saudi Arabia')}</span>
+              <span>{t(`فروع ${businessInfo.nameAr} بالرياض`, `${businessInfo.nameEn} Branches in Riyadh`)}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#183C2A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#174C2B] tracking-tight">
               {t('مواقع الفروع وساعات العمل', 'Store Locations & Working Hours')}
             </h2>
-            <p className="text-xs sm:text-sm text-[#568C42] mt-1">
-              {t(
-                'تفضلوا بزيارتنا في فروعنا بالرياض أو اطلبوا مباشرة عبر الموقع مع التوصيل السريع',
-                'Visit our Riyadh branches or order online for fast direct delivery to your door'
-              )}
+            <p className="text-xs sm:text-sm text-[#365B40] mt-1 font-medium">
+              {language === 'ar' ? businessInfo.servicesAr : businessInfo.servicesEn}
             </p>
           </div>
 
           <Link
             href="/branches"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#245A35] hover:text-[#568C42] transition-colors group"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#287A3D] hover:text-[#A8D900] transition-colors group"
           >
             <span>{t('عرض جميع الفروع على الخريطة', 'View All On Map')}</span>
             {dir === 'rtl' ? (
@@ -50,54 +47,107 @@ export const BranchSection: React.FC = () => {
           {branches.map((branch) => (
             <div
               key={branch.id}
-              className="bg-white rounded-2xl p-6 border border-[#DCE8D1] hover:border-[#568C42] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="bg-white rounded-3xl p-6 border border-[#DCEBD3] hover:border-[#A8D900] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-[#EDF4E5] text-[#245A35] flex items-center justify-center mb-4">
-                  <MapPinIcon size={20} />
+                {/* Header Icon + Name */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-11 h-11 rounded-2xl bg-[#E8F5D8] text-[#287A3D] flex items-center justify-center group-hover:bg-[#287A3D] group-hover:text-white transition-colors">
+                    <MapPinIcon size={22} />
+                  </div>
+                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#E8F5D8] text-[#174C2B] border border-[#DCEBD3]">
+                    {language === 'ar' ? branch.cityAr : branch.cityEn}
+                  </span>
                 </div>
 
-                <h3 className="text-base font-bold text-[#183C2A] mb-2">
+                <h3 className="text-lg font-black text-[#174C2B] mb-1.5">
                   {language === 'ar' ? branch.nameAr : branch.nameEn}
                 </h3>
 
-                <p className="text-xs text-gray-600 mb-4 leading-relaxed flex items-start gap-1.5">
-                  <span className="shrink-0 text-[#568C42] mt-0.5">•</span>
+                <p className="text-xs text-[#365B40] mb-3 leading-relaxed flex items-start gap-1.5">
+                  <span className="shrink-0 text-[#287A3D] mt-0.5">•</span>
                   <span>{language === 'ar' ? branch.addressAr : branch.addressEn}</span>
                 </p>
 
-                <div className="space-y-2 pt-2 border-t border-[#EDF4E5] text-xs text-gray-600">
+                {/* Services badge */}
+                <div className="mb-4 p-2 rounded-xl bg-[#E8F5D8]/50 border border-[#DCEBD3] text-[11px] text-[#174C2B] font-semibold leading-relaxed">
+                  {language === 'ar' ? branch.servicesAr : branch.servicesEn}
+                </div>
+
+                {/* Contact & Hours Info */}
+                <div className="space-y-2 pt-3 border-t border-[#DCEBD3] text-xs text-[#365B40]">
                   <div className="flex items-center gap-2">
-                    <ClockIcon size={14} className="text-[#568C42] shrink-0" />
-                    <span>{language === 'ar' ? branch.openingHoursAr : branch.openingHoursEn}</span>
+                    <ClockIcon size={14} className="text-[#287A3D] shrink-0" />
+                    <span className="text-[11px]">{language === 'ar' ? branch.openingHoursAr : branch.openingHoursEn}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <PhoneIcon size={14} className="text-[#568C42] shrink-0" />
-                    <a href={`tel:${branch.phone}`} className="hover:text-[#245A35] font-semibold" dir="ltr">
+
+                  <div className="flex items-center justify-between gap-2 pt-1">
+                    <div className="flex items-center gap-1.5">
+                      <PhoneIcon size={14} className="text-[#287A3D] shrink-0" />
+                      <span className="text-[11px] text-[#68816D]">{t('هاتف:', 'Phone:')}</span>
+                    </div>
+                    <a
+                      href={`tel:${branch.phone.replace(/\s+/g, '')}`}
+                      className="hover:text-[#287A3D] text-[#174C2B] font-bold text-xs"
+                      dir="ltr"
+                    >
                       {branch.phone}
+                    </a>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <WhatsAppIcon size={14} className="text-[#25D366] shrink-0" />
+                      <span className="text-[11px] text-gray-500">{t('واتساب:', 'WhatsApp:')}</span>
+                    </div>
+                    <a
+                      href={`https://wa.me/${branch.whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#25D366] font-bold text-xs text-[#287A3D]"
+                      dir="ltr"
+                    >
+                      {branch.whatsappDisplay || branch.whatsapp}
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-3 flex items-center gap-2">
+              {/* Action Buttons: Locate Button + WhatsApp / Call */}
+              <div className="mt-5 pt-4 border-t border-[#DCEBD3] space-y-2">
+                {/* 📍 Primary Locate Button */}
                 <a
                   href={branch.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2 px-3 text-center rounded-xl bg-[#FAF9F2] hover:bg-[#EDF4E5] text-[#163D29] text-xs font-bold border border-[#DCE8D1] transition-colors"
+                  className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#287A3D] to-[#A8D900] hover:from-[#A8D900] hover:to-[#DFFF00] text-white hover:text-[#174C2B] text-xs font-black shadow-md hover:shadow-lg hover:shadow-[#A8D900]/25 border border-[#287A3D] hover:border-[#A8D900] flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  {t('اتجاهات الخريطة', 'Get Directions')}
+                  <NavigationIcon size={15} />
+                  <span>{t('تحديد الموقع على الخريطة', 'Locate on Maps')}</span>
                 </a>
-                <a
-                  href={`https://wa.me/${branch.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-2 px-3 rounded-xl bg-[#245A35] hover:bg-[#163D29] text-white text-xs font-bold transition-colors"
-                  title="WhatsApp"
-                >
-                  {t('واتساب', 'WhatsApp')}
-                </a>
+
+                {/* Secondary: Quick WhatsApp & Call row */}
+                <div className="flex items-center gap-2">
+                  <a
+                    href={`https://wa.me/${branch.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2 px-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#166534] border border-[#25D366]/30 text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                    title="WhatsApp"
+                  >
+                    <WhatsAppIcon size={14} className="text-[#25D366]" />
+                    <span>{t('واتساب', 'WhatsApp')}</span>
+                  </a>
+
+                  <a
+                    href={`tel:${branch.phone.replace(/\s+/g, '')}`}
+                    className="flex-1 py-2 px-2.5 rounded-xl bg-white hover:bg-[#E8F5D8] text-[#174C2B] border border-[#DCEBD3] text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                    title="Call"
+                  >
+                    <PhoneIcon size={14} className="text-[#287A3D]" />
+                    <span>{t('اتصال', 'Call')}</span>
+                  </a>
+                </div>
               </div>
             </div>
           ))}

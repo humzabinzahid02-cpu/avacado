@@ -1,5 +1,5 @@
+import { redirect } from 'next/navigation';
 import { categories } from '@/data/categories';
-import { CategoryView } from './CategoryView';
 
 export function generateStaticParams() {
   return categories.map((cat) => ({
@@ -13,5 +13,5 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <CategoryView slug={slug} />;
+  redirect(`/shop?category=${encodeURIComponent(slug)}`);
 }

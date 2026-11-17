@@ -8,15 +8,15 @@ export default function ShippingAndReturnsPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="py-12 bg-[#FAF9F2] min-h-screen">
+    <div className="py-12 bg-[#FFFFFF] min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
         <div>
-          <span className="text-xs font-bold text-[#568C42] tracking-wider uppercase block mb-1">
+          <span className="text-xs font-bold text-[#A8D900] tracking-wider uppercase block mb-1">
             {t('خدمات التوصيل والضمان', 'Delivery & Guarantees')}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#183C2A] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#174C2B] tracking-tight">
             {t('الشحن والتوصيل وضمان الجودة', 'Shipping, Delivery & Quality Guarantee')}
           </h1>
           <p className="text-xs sm:text-sm text-gray-500 mt-1">
@@ -25,11 +25,11 @@ export default function ShippingAndReturnsPage() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DCE8D1] shadow-xs space-y-6 text-sm text-gray-700 leading-relaxed">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DCEBD3] shadow-xs space-y-6 text-sm text-gray-700 leading-relaxed">
           
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A] flex items-center gap-2">
-              <span className="text-[#245A35]"><MaterialIcon name="local_shipping" size={20} /></span>
+            <h2 className="text-base font-bold text-[#174C2B] flex items-center gap-2">
+              <span className="text-[#287A3D]"><MaterialIcon name="local_shipping" size={20} /></span>
               <span>{t('1. نطاق ومواعيد التوصيل بالرياض', '1. Delivery Coverage & Timelines')}</span>
             </h2>
             <p>
@@ -41,8 +41,8 @@ export default function ShippingAndReturnsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A] flex items-center gap-2">
-              <span className="text-[#245A35]"><MaterialIcon name="payments" size={20} /></span>
+            <h2 className="text-base font-bold text-[#174C2B] flex items-center gap-2">
+              <span className="text-[#287A3D]"><MaterialIcon name="payments" size={20} /></span>
               <span>{t('2. رسوم التوصيل والعروض المجانية', '2. Delivery Rates & Free Delivery')}</span>
             </h2>
             <p>
@@ -54,8 +54,8 @@ export default function ShippingAndReturnsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A] flex items-center gap-2">
-              <span className="text-[#245A35]"><MaterialIcon name="verified_user" size={20} /></span>
+            <h2 className="text-base font-bold text-[#174C2B] flex items-center gap-2">
+              <span className="text-[#287A3D]"><MaterialIcon name="verified_user" size={20} /></span>
               <span>{t('3. ضمان الجودة والاستبدال', '3. Freshness Guarantee & Replacements')}</span>
             </h2>
             <p>

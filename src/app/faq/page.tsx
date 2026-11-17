@@ -43,15 +43,15 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="py-12 bg-[#FAF9F2] min-h-screen">
+    <div className="py-12 bg-[#FFFFFF] min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
         <div className="text-center space-y-3">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#EDF4E5] text-[#245A35] text-xs font-bold">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#E8F5D8] text-[#287A3D] text-xs font-bold">
             {t('المساعدة والأسئلة', 'Help & Questions')}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#183C2A] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#174C2B] tracking-tight">
             {t('الأسئلة الشائعة', 'Frequently Asked Questions')}
           </h1>
           <p className="text-sm text-gray-600 max-w-xl mx-auto leading-relaxed">
@@ -63,16 +63,16 @@ export default function FAQPage() {
         </div>
 
         {/* Accordion */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCE8D1] shadow-xs divide-y divide-[#EDF4E5]">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBD3] shadow-xs divide-y divide-[#E8F5D8]">
           {faqs.map((faq, idx) => (
             <div key={idx} className="py-4">
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between text-start gap-4 font-bold text-sm sm:text-base text-[#183C2A] hover:text-[#245A35] transition-colors"
+                className="w-full flex items-center justify-between text-start gap-4 font-bold text-sm sm:text-base text-[#174C2B] hover:text-[#287A3D] transition-colors"
               >
                 <span>{t(faq.qAr, faq.qEn)}</span>
                 <span
-                  className={`transition-transform duration-200 text-[#568C42] ${
+                  className={`transition-transform duration-200 text-[#A8D900] ${
                     openIndex === idx ? 'rotate-180' : ''
                   }`}
                 >
@@ -90,8 +90,8 @@ export default function FAQPage() {
         </div>
 
         {/* Contact Banner */}
-        <div className="rounded-2xl bg-[#EDF4E5] p-6 text-center border border-[#DCE8D1] space-y-2">
-          <h3 className="text-sm font-bold text-[#183C2A]">
+        <div className="rounded-2xl bg-[#E8F5D8] p-6 text-center border border-[#DCEBD3] space-y-2">
+          <h3 className="text-sm font-bold text-[#174C2B]">
             {t('هل لديك سؤال آخر؟', 'Have another question?')}
           </h3>
           <p className="text-xs text-gray-600">

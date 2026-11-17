@@ -7,15 +7,15 @@ export default function TermsPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="py-12 bg-[#FAF9F2] min-h-screen">
+    <div className="py-12 bg-[#FFFFFF] min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
         <div>
-          <span className="text-xs font-bold text-[#568C42] tracking-wider uppercase block mb-1">
+          <span className="text-xs font-bold text-[#A8D900] tracking-wider uppercase block mb-1">
             {t('السياسات والشروط', 'Policies & Legal')}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#183C2A] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#174C2B] tracking-tight">
             {t('الشروط والأحكام', 'Terms & Conditions')}
           </h1>
           <p className="text-xs sm:text-sm text-gray-500 mt-1">
@@ -24,10 +24,10 @@ export default function TermsPage() {
         </div>
 
         {/* Content Card with Verified Official Text */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DCE8D1] shadow-xs space-y-6 text-sm text-gray-700 leading-relaxed">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DCEBD3] shadow-xs space-y-6 text-sm text-gray-700 leading-relaxed">
           
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A]">
+            <h2 className="text-base font-bold text-[#174C2B]">
               {t('1. قبول الشروط', '1. Acceptance of Terms')}
             </h2>
             <p>
@@ -39,7 +39,7 @@ export default function TermsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A]">
+            <h2 className="text-base font-bold text-[#174C2B]">
               {t('2. الأسعار والضرائب', '2. Pricing & Taxes')}
             </h2>
             <p>
@@ -51,7 +51,7 @@ export default function TermsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A]">
+            <h2 className="text-base font-bold text-[#174C2B]">
               {t('3. تجهيز الطلبات والتوصيل المبرد', '3. Order Fulfillment & Delivery')}
             </h2>
             <p>
@@ -63,7 +63,7 @@ export default function TermsPage() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-base font-bold text-[#183C2A]">
+            <h2 className="text-base font-bold text-[#174C2B]">
               {t('4. الإلغاء والتعديل', '4. Cancellations & Modifications')}
             </h2>
             <p>

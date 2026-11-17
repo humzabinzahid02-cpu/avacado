@@ -64,7 +64,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FAF9F2] text-[#183C2A] antialiased selection:bg-[#A8D957] selection:text-[#163D29]">
+      <body className="min-h-full flex flex-col bg-white text-[#174C2B] antialiased selection:bg-[#A8D900] selection:text-[#174C2B]">
         <LanguageProvider>
           <CartProvider>
             <Header />

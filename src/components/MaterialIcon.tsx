@@ -29,7 +29,9 @@ export type MaterialIconName =
   | 'arrow_back'
   | 'arrow_forward'
   | 'close'
-  | 'menu';
+  | 'menu'
+  | 'local_fire_department'
+  | 'auto_awesome';
 
 interface MaterialIconProps extends React.SVGProps<SVGSVGElement> {
   name: MaterialIconName | string;
@@ -245,6 +247,34 @@ export const MaterialIcon: React.FC<MaterialIconProps> = ({
         </svg>
       );
 
+    case 'local_fire_department':
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className={className}
+          {...props}
+        >
+          <path d="M12 12.9c.8 0 1.5-.7 1.5-1.5 0-.5-.2-.9-.6-1.2.4.3.7.8.7 1.3 0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5c0-.5.3-1 .7-1.3-.4.3-.6.7-.6 1.2 0 .8.7 1.5 1.5 1.5zm4.5 1.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5c0-1.9 1.1-3.5 2.8-4.1-.1.4 0 .9.2 1.3.3.7.9 1.2 1.7 1.4.1-.5.3-.9.5-1.2.6-.7 1.4-1.6 1.4-3.3 0-.4-.1-.9-.2-1.2 1.6 1.3 2.6 3.4 2.6 5.6zM13.5.7C10.5 4.1 12 7.1 12 9c-1.8-2.6-.7-6.2-.7-6.2C6.9 4.9 4 9.6 4 14.4 4 19.1 7.6 23 12 23s8-3.9 8-8.6c0-5.7-4.1-10.4-6.5-13.7z" />
+        </svg>
+      );
+
+    case 'auto_awesome':
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className={className}
+          {...props}
+        >
+          <path d="m19 9 1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z" />
+        </svg>
+      );
+
     case 'star':
       return (
         <svg
@@ -298,6 +328,20 @@ export const MaterialIcon: React.FC<MaterialIconProps> = ({
           {...props}
         >
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+        </svg>
+      );
+
+    case 'local_fire_department':
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className={className}
+          {...props}
+        >
+          <path d="M12 12.9c.77 0 1.4-.63 1.4-1.4 0-.44-.21-.83-.53-1.09-.4.8-1.22 1.36-2.18 1.36a2.4 2.4 0 0 1-2.4-2.4c0-.77.36-1.45.92-1.89-.92.68-2.52 2.37-2.52 4.92 0 2.65 2.15 4.8 4.8 4.8s4.8-2.15 4.8-4.8c0-1.63-.82-3.07-2.07-3.93.44 1.38.23 2.92-.93 4.02-.31.29-.69.49-1.11.55v-.14zm7.48-.55C17.91 8.27 12.32 8.05 13.67 2.12a.5.5 0 0 0-.81-.46C9.22 4.18 6 8.76 6 13.5 6 17.08 8.92 20 12.5 20c4.1 0 7.42-3.52 6.98-7.65z" />
         </svg>
       );
 

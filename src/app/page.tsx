@@ -1,8 +1,9 @@
 import { HeroSection } from '@/components/HeroSection';
 import { CategorySection } from '@/components/CategorySection';
 import { FeaturedProductsSection } from '@/components/FeaturedProductsSection';
+import { IceCreamSection } from '@/components/IceCreamSection';
+import { FruitPlattersSection } from '@/components/FruitPlattersSection';
 import { DrinksSection } from '@/components/DrinksSection';
-import { FoodDessertsSection } from '@/components/FoodDessertsSection';
 import { PromoBanner } from '@/components/PromoBanner';
 import { BranchSection } from '@/components/BranchSection';
 import { FeatureBadges } from '@/components/FeatureBadges';
@@ -10,28 +11,31 @@ import { FeatureBadges } from '@/components/FeatureBadges';
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero Section matching mockup */}
+      {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Shop by Category matching mockup */}
+      {/* 2. Category Carousel with direct /shop?category= filters */}
       <CategorySection />
 
-      {/* 3. Featured Products matching mockup */}
+      {/* 3. Best Selling Products (Most popular creations) */}
       <FeaturedProductsSection />
 
-      {/* 4. Promotional Green Banner matching mockup */}
+      {/* 4. Artisanal Ice Cream (Featured from the end of the menu in reverse) */}
+      <IceCreamSection />
+
+      {/* 5. Fresh Fruit Platters & Salads (From the end of the menu in reverse) */}
+      <FruitPlattersSection />
+
+      {/* 6. Promotional Green Banner */}
       <PromoBanner />
 
-      {/* 5. Fresh Drinks Collection */}
+      {/* 7. Fresh Drinks Collection */}
       <DrinksSection />
 
-      {/* 6. Food and Desserts Collection (Equal visual importance) */}
-      <FoodDessertsSection />
-
-      {/* 7. Saudi Branch Locator */}
+      {/* 8. Saudi Branch Locator */}
       <BranchSection />
 
-      {/* 8. Trust Feature Badges matching mockup */}
+      {/* 9. Trust Feature Badges */}
       <FeatureBadges />
     </>
   );

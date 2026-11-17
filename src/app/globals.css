@@ -2,29 +2,58 @@
 @import "tailwindcss";
 
 :root {
-  --color-forest: #163D29;
-  --color-avocado: #245A35;
-  --color-leaf: #568C42;
-  --color-lime: #A8D957;
-  --color-sage: #DCE8D1;
-  --color-pistachio: #EDF4E5;
-  --color-cream: #FAF9F2;
+  /* Primary Brand Colors */
+  --color-lime: #A8D900;
+  --color-lime-yellow: #DFFF00;
+  --color-leaf: #287A3D;
+  --color-light-green: #E8F5D8;
   --color-white: #FFFFFF;
-  --color-text-dark: #183C2A;
-  
-  --background: #FAF9F2;
-  --foreground: #183C2A;
+
+  /* Text Colors */
+  --color-heading: #174C2B;
+  --color-text: #365B40;
+  --color-muted: #68816D;
+  --color-text-light: #FFFFFF;
+
+  /* Background Colors */
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #E8F5D8;
+
+  /* Borders and Shadows */
+  --color-border: #DCEBD3;
+  --color-border-hover: #A8D900;
+  --color-shadow: rgba(40, 122, 61, 0.12);
+
+  /* Legacy support */
+  --background: #FFFFFF;
+  --foreground: #174C2B;
+
+  /* Brand Gradients */
+  --gradient-primary: linear-gradient(135deg, #287A3D, #A8D900, #DFFF00);
+  --gradient-soft: linear-gradient(135deg, #E8F5D8, #FFFFFF);
+  --gradient-button: linear-gradient(90deg, #287A3D, #A8D900);
+  --gradient-highlight: linear-gradient(90deg, #A8D900, #DFFF00);
+  --gradient-text: linear-gradient(90deg, #287A3D, #A8D900, #DFFF00);
 }
 
 @theme {
-  --color-forest: #163D29;
-  --color-avocado: #245A35;
-  --color-leaf: #568C42;
-  --color-lime: #A8D957;
-  --color-sage: #DCE8D1;
-  --color-pistachio: #EDF4E5;
-  --color-cream: #FAF9F2;
-  --color-darkgreen: #183C2A;
+  --color-lime: #A8D900;
+  --color-lime-yellow: #DFFF00;
+  --color-leaf: #287A3D;
+  --color-light-green: #E8F5D8;
+  --color-heading: #174C2B;
+  --color-text-green: #365B40;
+  --color-muted-green: #68816D;
+  --color-border-brand: #DCEBD3;
+
+  /* Legacy names kept for backward compat */
+  --color-forest: #174C2B;
+  --color-avocado: #287A3D;
+  --color-sage: #DCEBD3;
+  --color-pistachio: #E8F5D8;
+  --color-cream: #FFFFFF;
+  --color-darkgreen: #174C2B;
 
   --font-arabic: 'Tajawal', 'Cairo', system-ui, -apple-system, sans-serif;
   --font-latin: 'Outfit', system-ui, -apple-system, sans-serif;
@@ -39,8 +68,8 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-text-dark);
+  background-color: #FFFFFF;
+  color: var(--color-heading);
   font-family: 'Tajawal', 'Cairo', 'Outfit', system-ui, sans-serif;
   overflow-x: hidden;
 }
@@ -51,14 +80,25 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #EDF4E5;
+  background: #E8F5D8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #568C42;
+  background: #A8D900;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #245A35;
+  background: #287A3D;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
 /* Glassmorphism & Soft Card Styles */
@@ -66,22 +106,22 @@ body {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(220, 232, 209, 0.7);
+  border: 1px solid rgba(220, 235, 211, 0.7);
 }
 
 .glass-panel-dark {
-  background: rgba(22, 61, 41, 0.85);
+  background: rgba(40, 122, 61, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(86, 140, 66, 0.3);
+  border: 1px solid rgba(168, 217, 0, 0.3);
 }
 
 .avocado-gradient {
-  background: linear-gradient(135deg, #163D29 0%, #245A35 50%, #163D29 100%);
+  background: linear-gradient(135deg, #174C2B 0%, #287A3D 50%, #174C2B 100%);
 }
 
 .lime-glow {
-  box-shadow: 0 0 25px rgba(168, 217, 87, 0.4);
+  box-shadow: 0 0 25px rgba(168, 217, 0, 0.4);
 }
 
 .card-hover {
@@ -89,7 +129,89 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px -10px rgba(22, 61, 41, 0.12);
+  box-shadow: 0 14px 30px -10px rgba(40, 122, 61, 0.12);
+}
+
+/* ==========================================================================
+   GLOBAL COMPONENT DESIGN TOKENS & UTILITIES
+   Ensures automatic inheritance for all current & future components
+   ========================================================================== */
+
+/* Buttons */
+.btn-primary {
+  background: var(--gradient-button);
+  color: var(--color-white);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px var(--color-shadow);
+}
+.btn-primary:hover {
+  background: var(--gradient-highlight);
+  color: var(--color-heading);
+  box-shadow: 0 6px 20px rgba(168, 217, 0, 0.35);
+  border-color: var(--color-lime);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-leaf);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-secondary:hover {
+  background: var(--color-surface-soft);
+  color: var(--color-heading);
+  border-color: var(--color-lime);
+}
+
+/* Gradients */
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+.bg-gradient-soft {
+  background: var(--gradient-soft);
+}
+.bg-gradient-button {
+  background: var(--gradient-button);
+}
+.bg-gradient-highlight {
+  background: var(--gradient-highlight);
+}
+.text-gradient-highlight {
+  background: var(--gradient-highlight);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-brand {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card & Surface Tokens */
+.card-brand {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-brand:hover {
+  border-color: var(--color-lime);
+  box-shadow: 0 10px 25px -5px var(--color-shadow);
+}
+
+/* Badges */
+.badge-lime-yellow {
+  background: var(--color-lime-yellow);
+  color: var(--color-heading);
+  font-weight: 800;
+}
+.badge-leaf {
+  background: var(--color-surface-soft);
+  color: var(--color-leaf);
+  border: 1px solid var(--color-border);
 }
 
 /* Page Transition & Loading Bar Animations */

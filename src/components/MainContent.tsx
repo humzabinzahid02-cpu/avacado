@@ -30,7 +30,7 @@ export const MainContent: React.FC<{ children: React.ReactNode }> = ({ children 
         }`}
       >
         <div
-          className={`h-full bg-gradient-to-r from-[#245A35] via-[#A8D957] to-[#d4f88e] shadow-[0_0_12px_rgba(168,217,87,0.9)] ${
+          className={`h-full bg-gradient-to-r from-[#287A3D] via-[#A8D900] to-[#DFFF00] shadow-[0_0_12px_rgba(168,217,0,0.9)] ${
             navigating ? 'animate-progress-fast' : 'w-0'
           }`}
         />

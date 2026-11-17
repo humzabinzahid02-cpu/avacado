@@ -11,31 +11,27 @@ import { MaterialIcon } from './MaterialIcon';
 export const DrinksSection: React.FC = () => {
   const { t, dir } = useLanguage();
 
-  // Fresh drinks products
-  const drinks = products.filter(
-    (p) =>
-      p.categorySlug === 'avocado-drinks' ||
-      p.categorySlug === 'natural-juices' ||
-      p.categorySlug === 'mixes' ||
-      p.categorySlug === 'milkshakes' ||
-      p.categorySlug === 'smoothies'
-  ).slice(0, 4);
+  // 4 Featured signature drinks across distinct menu categories
+  const featuredDrinkSlugs = ['special-avocado', 'arais-ice-cream', 'fresh-cocktail', 'galaxy-shake'];
+  const drinks = featuredDrinkSlugs
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is (typeof products)[0] => Boolean(p));
 
   return (
-    <section className="py-14 bg-[#FAF9F2]">
+    <section className="py-14 bg-[#FFFFFF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EDF4E5] text-[#245A35] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5D8] text-[#287A3D] text-xs font-bold mb-2 border border-[#DCEBD3]">
               <MaterialIcon name="local_bar" size={16} />
               <span>{t('مشروبات وعصائر طبيعية', 'Fresh & Natural Drinks')}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#183C2A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#174C2B] tracking-tight">
               {t('تشكيلة العصائر المنعشة', 'Refreshing Drinks Collection')}
             </h2>
-            <p className="text-xs sm:text-sm text-[#568C42] mt-1">
+            <p className="text-xs sm:text-sm text-[#365B40] mt-1 font-medium">
               {t(
                 'عصائر طبيعية 100%، خلطات طبقات فريدة، وميلك شيك غني بالنكهات الاستثنائية',
                 '100% natural juices, signature layered drinks, and gourmet milkshakes'
@@ -44,15 +40,11 @@ export const DrinksSection: React.FC = () => {
           </div>
 
           <Link
-            href="/shop?cat=natural-juices"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#245A35] hover:text-[#568C42] transition-colors group"
+            href="/shop?category=cocktails"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#174C2B] hover:text-black bg-[#E8F5D8] hover:bg-[#DFFF00] px-4 py-2 rounded-full border border-[#DCEBD3] transition-colors self-start sm:self-auto shrink-0"
           >
-            <span>{t('استكشف المشروبات', 'Explore All Drinks')}</span>
-            {dir === 'rtl' ? (
-              <ArrowLeftIcon size={16} className="transition-transform group-hover:-translate-x-1" />
-            ) : (
-              <ArrowRightIcon size={16} className="transition-transform group-hover:translate-x-1" />
-            )}
+            <span>{t('عرض جميع العصائر والكوكتيلات', 'View All Drinks & Cocktails')}</span>
+            {dir === 'rtl' ? <ArrowLeftIcon size={14} /> : <ArrowRightIcon size={14} />}
           </Link>
         </div>
 

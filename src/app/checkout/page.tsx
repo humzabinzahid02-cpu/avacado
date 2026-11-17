@@ -29,10 +29,10 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="py-20 text-center bg-[#FAF9F2] min-h-screen">
-        <div className="max-w-md mx-auto bg-white p-10 rounded-3xl border border-[#DCE8D1] space-y-4">
+      <div className="py-20 text-center bg-[#FFFFFF] min-h-screen">
+        <div className="max-w-md mx-auto bg-white p-10 rounded-3xl border border-[#DCEBD3] space-y-4">
           <ShoppingBagIcon size={40} className="mx-auto text-gray-400" />
-          <h2 className="text-xl font-bold text-[#183C2A]">
+          <h2 className="text-xl font-bold text-[#174C2B]">
             {t('سلتك فارغة', 'Your cart is empty')}
           </h2>
           <p className="text-xs text-gray-500">
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-block py-2.5 px-6 rounded-full bg-[#245A35] text-white text-xs font-bold"
+            className="inline-block py-2.5 px-6 rounded-full bg-[#287A3D] text-white text-xs font-bold"
           >
             {t('تصفح المتجر', 'Browse Shop')}
           </Link>
@@ -98,15 +98,15 @@ export default function CheckoutPage() {
   const calculatedTotal = subtotal + calculatedDelivery;
 
   return (
-    <div className="py-12 bg-[#FAF9F2] min-h-screen">
+    <div className="py-12 bg-[#FFFFFF] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-black text-[#183C2A] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#174C2B] tracking-tight">
             {t('إتمام الطلب', 'Checkout')}
           </h1>
-          <p className="text-sm text-[#568C42] mt-1">
+          <p className="text-sm text-[#A8D900] mt-1">
             {t('أدخل بيانات التوصيل واختر وسيلة الدفع المفضلة لتأكيد طلبك', 'Enter your delivery details and choose a payment method')}
           </p>
         </div>
@@ -128,9 +128,9 @@ export default function CheckoutPage() {
           <div className="lg:col-span-8 space-y-6">
             
             {/* 1. Fulfillment Type (Delivery vs Pickup) */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCE8D1] shadow-xs space-y-4">
-              <h2 className="text-base font-black text-[#183C2A] flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#EDF4E5] text-[#245A35] flex items-center justify-center text-xs font-bold">1</span>
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBD3] shadow-xs space-y-4">
+              <h2 className="text-base font-black text-[#174C2B] flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-[#E8F5D8] text-[#287A3D] flex items-center justify-center text-xs font-bold">1</span>
                 <span>{t('طريقة الاستلام', 'Fulfillment Method')}</span>
               </h2>
 
@@ -140,11 +140,11 @@ export default function CheckoutPage() {
                   onClick={() => setFulfillmentType('delivery')}
                   className={`py-4 px-4 rounded-2xl border text-center font-bold text-sm transition-all flex flex-col items-center gap-2 ${
                     fulfillmentType === 'delivery'
-                      ? 'border-[#245A35] bg-[#EDF4E5] text-[#163D29] ring-2 ring-[#245A35]'
-                      : 'border-[#DCE8D1] bg-[#FAF9F2] text-gray-600 hover:border-[#568C42]'
+                      ? 'border-[#287A3D] bg-[#E8F5D8] text-[#174C2B] ring-2 ring-[#287A3D]'
+                      : 'border-[#DCEBD3] bg-[#FFFFFF] text-gray-600 hover:border-[#A8D900]'
                   }`}
                 >
-                  <MaterialIcon name="local_shipping" size={24} className="text-[#245A35]" />
+                  <MaterialIcon name="local_shipping" size={24} className="text-[#287A3D]" />
                   <span>{t('توصيل إلى العنوان بالرياض', 'Home Delivery (Riyadh)')}</span>
                 </button>
 
@@ -153,11 +153,11 @@ export default function CheckoutPage() {
                   onClick={() => setFulfillmentType('pickup')}
                   className={`py-4 px-4 rounded-2xl border text-center font-bold text-sm transition-all flex flex-col items-center gap-2 ${
                     fulfillmentType === 'pickup'
-                      ? 'border-[#245A35] bg-[#EDF4E5] text-[#163D29] ring-2 ring-[#245A35]'
-                      : 'border-[#DCE8D1] bg-[#FAF9F2] text-gray-600 hover:border-[#568C42]'
+                      ? 'border-[#287A3D] bg-[#E8F5D8] text-[#174C2B] ring-2 ring-[#287A3D]'
+                      : 'border-[#DCEBD3] bg-[#FFFFFF] text-gray-600 hover:border-[#A8D900]'
                   }`}
                 >
-                  <MaterialIcon name="storefront" size={24} className="text-[#245A35]" />
+                  <MaterialIcon name="storefront" size={24} className="text-[#287A3D]" />
                   <span>{t('استلام من الفرع', 'Pickup from Branch')}</span>
                 </button>
               </div>
@@ -165,13 +165,13 @@ export default function CheckoutPage() {
               {/* Branch Selection for Pickup */}
               {fulfillmentType === 'pickup' && (
                 <div className="pt-3 space-y-2">
-                  <label className="text-xs font-bold text-[#183C2A] block">
+                  <label className="text-xs font-bold text-[#174C2B] block">
                     {t('اختر الفرع للاستلام:', 'Select Pickup Branch:')}
                   </label>
                   <select
                     value={selectedBranch}
                     onChange={(e) => setSelectedBranch(e.target.value)}
-                    className="w-full bg-[#FAF9F2] text-sm text-[#183C2A] py-3 px-4 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35]"
+                    className="w-full bg-[#FFFFFF] text-sm text-[#174C2B] py-3 px-4 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D]"
                   >
                     {branches.map((b) => (
                       <option key={b.id} value={b.id}>
@@ -184,15 +184,15 @@ export default function CheckoutPage() {
             </div>
 
             {/* 2. Customer Information */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCE8D1] shadow-xs space-y-4">
-              <h2 className="text-base font-black text-[#183C2A] flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#EDF4E5] text-[#245A35] flex items-center justify-center text-xs font-bold">2</span>
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBD3] shadow-xs space-y-4">
+              <h2 className="text-base font-black text-[#174C2B] flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-[#E8F5D8] text-[#287A3D] flex items-center justify-center text-xs font-bold">2</span>
                 <span>{t('بيانات العميل', 'Customer Details')}</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                  <label className="text-xs font-bold text-[#174C2B] block mb-1">
                     {t('الاسم الكريم *', 'Full Name *')}
                   </label>
                   <input
@@ -201,12 +201,12 @@ export default function CheckoutPage() {
                     placeholder={t('محمد عبدالله', 'Mohammed Abdullah')}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-[#FAF9F2] text-sm py-2.5 px-3 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35]"
+                    className="w-full bg-[#FFFFFF] text-sm py-2.5 px-3 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                  <label className="text-xs font-bold text-[#174C2B] block mb-1">
                     {t('رقم الجوال السعودي *', 'Saudi Mobile Number *')}
                   </label>
                   <input
@@ -216,27 +216,27 @@ export default function CheckoutPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     dir="ltr"
-                    className="w-full bg-[#FAF9F2] text-sm py-2.5 px-3 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35] text-start"
+                    className="w-full bg-[#FFFFFF] text-sm py-2.5 px-3 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D] text-start"
                   />
                 </div>
               </div>
 
               {fulfillmentType === 'delivery' && (
-                <div className="space-y-4 pt-2 border-t border-[#EDF4E5]">
+                <div className="space-y-4 pt-2 border-t border-[#E8F5D8]">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                      <label className="text-xs font-bold text-[#174C2B] block mb-1">
                         {t('المدينة', 'City')}
                       </label>
                       <input
                         type="text"
                         disabled
                         value={city}
-                        className="w-full bg-gray-100 text-gray-600 text-sm py-2.5 px-3 rounded-xl border border-[#DCE8D1]"
+                        className="w-full bg-gray-100 text-gray-600 text-sm py-2.5 px-3 rounded-xl border border-[#DCEBD3]"
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                      <label className="text-xs font-bold text-[#174C2B] block mb-1">
                         {t('الحي *', 'District in Riyadh *')}
                       </label>
                       <input
@@ -245,13 +245,13 @@ export default function CheckoutPage() {
                         placeholder={t('حي الصحافة / الملقا / النرجس...', 'Al Sahafa / Al Malqa...')}
                         value={district}
                         onChange={(e) => setDistrict(e.target.value)}
-                        className="w-full bg-[#FAF9F2] text-sm py-2.5 px-3 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35]"
+                        className="w-full bg-[#FFFFFF] text-sm py-2.5 px-3 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                    <label className="text-xs font-bold text-[#174C2B] block mb-1">
                       {t('تفاصيل العنوان والشارع', 'Street Address & Details')}
                     </label>
                     <input
@@ -259,14 +259,14 @@ export default function CheckoutPage() {
                       placeholder={t('اسم الشارع، رقم المبنى أو الشقة', 'Street name, building number')}
                       value={streetAddress}
                       onChange={(e) => setStreetAddress(e.target.value)}
-                      className="w-full bg-[#FAF9F2] text-sm py-2.5 px-3 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35]"
+                      className="w-full bg-[#FFFFFF] text-sm py-2.5 px-3 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D]"
                     />
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="text-xs font-bold text-[#183C2A] block mb-1">
+                <label className="text-xs font-bold text-[#174C2B] block mb-1">
                   {t('ملاحظات خاصة بالطلب (اختياري)', 'Special Delivery Notes (Optional)')}
                 </label>
                 <textarea
@@ -274,15 +274,15 @@ export default function CheckoutPage() {
                   placeholder={t('أي ملاحظات على التحضير أو التوصيل...', 'Any preparation notes...')}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-[#FAF9F2] text-sm py-2 px-3 rounded-xl border border-[#DCE8D1] focus:outline-hidden focus:border-[#245A35]"
+                  className="w-full bg-[#FFFFFF] text-sm py-2 px-3 rounded-xl border border-[#DCEBD3] focus:outline-hidden focus:border-[#287A3D]"
                 />
               </div>
             </div>
 
             {/* 3. Payment Method */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCE8D1] shadow-xs space-y-4">
-              <h2 className="text-base font-black text-[#183C2A] flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#EDF4E5] text-[#245A35] flex items-center justify-center text-xs font-bold">3</span>
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBD3] shadow-xs space-y-4">
+              <h2 className="text-base font-black text-[#174C2B] flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-[#E8F5D8] text-[#287A3D] flex items-center justify-center text-xs font-bold">3</span>
                 <span>{t('طريقة الدفع', 'Payment Method')}</span>
               </h2>
 
@@ -299,11 +299,11 @@ export default function CheckoutPage() {
                     onClick={() => setPaymentMethod(pm.id as any)}
                     className={`py-3 px-3 rounded-xl border text-center font-bold text-xs transition-all flex flex-col items-center gap-1.5 ${
                       paymentMethod === pm.id
-                        ? 'border-[#245A35] bg-[#EDF4E5] text-[#163D29] ring-2 ring-[#245A35]'
-                        : 'border-[#DCE8D1] bg-[#FAF9F2] text-gray-700 hover:border-[#568C42]'
+                        ? 'border-[#287A3D] bg-[#E8F5D8] text-[#174C2B] ring-2 ring-[#287A3D]'
+                        : 'border-[#DCEBD3] bg-[#FFFFFF] text-gray-700 hover:border-[#A8D900]'
                     }`}
                   >
-                    <span className="text-[#245A35]">
+                    <span className="text-[#287A3D]">
                       <MaterialIcon name={pm.icon} size={22} />
                     </span>
                     <span>{pm.label}</span>
@@ -320,24 +320,24 @@ export default function CheckoutPage() {
           </div>
 
           {/* Order Summary Column (4 cols) */}
-          <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-8 border border-[#DCE8D1] shadow-xs space-y-4 sticky top-28">
-            <h3 className="text-base font-black text-[#183C2A] pb-3 border-b border-[#EDF4E5]">
+          <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-8 border border-[#DCEBD3] shadow-xs space-y-4 sticky top-28">
+            <h3 className="text-base font-black text-[#174C2B] pb-3 border-b border-[#E8F5D8]">
               {t('موجز الطلبية', 'Order Breakdown')}
             </h3>
 
             {/* Items mini list */}
-            <div className="max-h-56 overflow-y-auto divide-y divide-[#EDF4E5] text-xs">
+            <div className="max-h-56 overflow-y-auto divide-y divide-[#E8F5D8] text-xs">
               {items.map((item) => (
                 <div key={item.id} className="py-2.5 flex items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="font-bold text-[#183C2A] truncate">
+                    <p className="font-bold text-[#174C2B] truncate">
                       {language === 'ar' ? item.product.nameAr : item.product.nameEn}
                     </p>
                     <span className="text-gray-500 text-[11px]">
                       {item.quantity}x {item.selectedSize ? (language === 'ar' ? item.selectedSize.nameAr : item.selectedSize.nameEn) : ''}
                     </span>
                   </div>
-                  <span className="font-bold text-[#163D29] shrink-0">
+                  <span className="font-bold text-[#174C2B] shrink-0">
                     {item.itemTotal.toFixed(2)} {t('ر.س', 'SAR')}
                   </span>
                 </div>
@@ -345,24 +345,24 @@ export default function CheckoutPage() {
             </div>
 
             {/* Calculations */}
-            <div className="pt-3 border-t border-[#EDF4E5] space-y-2 text-xs text-gray-600">
+            <div className="pt-3 border-t border-[#E8F5D8] space-y-2 text-xs text-gray-600">
               <div className="flex justify-between">
                 <span>{t('المجموع الفرعي', 'Subtotal')}</span>
-                <span className="font-bold text-[#183C2A]">{subtotal.toFixed(2)} {t('ر.س', 'SAR')}</span>
+                <span className="font-bold text-[#174C2B]">{subtotal.toFixed(2)} {t('ر.س', 'SAR')}</span>
               </div>
               <div className="flex justify-between">
                 <span>{t('التوصيل', 'Delivery')}</span>
-                <span className="font-bold text-[#183C2A]">
+                <span className="font-bold text-[#174C2B]">
                   {calculatedDelivery === 0 ? (
-                    <span className="text-[#245A35] font-black">{t('مجاني', 'FREE')}</span>
+                    <span className="text-[#287A3D] font-black">{t('مجاني', 'FREE')}</span>
                   ) : (
                     `${calculatedDelivery.toFixed(2)} ${t('ر.س', 'SAR')}`
                   )}
                 </span>
               </div>
-              <div className="flex justify-between pt-3 border-t border-[#EDF4E5] text-[#183C2A]">
+              <div className="flex justify-between pt-3 border-t border-[#E8F5D8] text-[#174C2B]">
                 <span className="text-base font-black">{t('المبلغ الإجمالي', 'Total Amount')}</span>
-                <span className="text-2xl font-black text-[#163D29]">
+                <span className="text-2xl font-black text-[#174C2B]">
                   {calculatedTotal.toFixed(2)} {t('ر.س', 'SAR')}
                 </span>
               </div>
@@ -371,7 +371,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 px-6 rounded-xl bg-[#245A35] hover:bg-[#163D29] disabled:bg-gray-300 text-white font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 mt-4"
+              className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#287A3D] via-[#287A3D] to-[#287A3D] hover:from-[#A8D900] hover:via-[#DFFF00] hover:to-[#DFFF00] disabled:bg-gray-300 text-white hover:text-[#174C2B] font-black text-sm shadow-lg hover:shadow-xl hover:shadow-[#A8D900]/25 border border-[#287A3D] hover:border-[#A8D900] transition-all duration-300 mt-4 active:scale-98"
             >
               {isSubmitting ? t('جاري تأكيد الطلب...', 'Confirming Order...') : t('تأكيد الطلب الآن', 'Confirm Order Now')}
             </button>

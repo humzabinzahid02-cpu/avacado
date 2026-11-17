@@ -11,18 +11,18 @@ export default function AboutPage() {
   const { t, dir } = useLanguage();
 
   return (
-    <div className="py-12 bg-[#FAF9F2] min-h-screen">
+    <div className="py-12 bg-[#FFFFFF] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Hero Banner */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#163D29] via-[#245A35] to-[#163D29] text-white p-8 sm:p-16 shadow-xl border border-[#568C42]/30 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#A8D957]/20 border border-[#A8D957]/40 text-[#A8D957] text-xs font-bold">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#174C2B] via-[#287A3D] to-[#174C2B] text-white p-8 sm:p-16 shadow-xl border border-[#A8D900]/30 text-center space-y-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#A8D900]/20 border border-[#A8D900]/40 text-[#A8D900] text-xs font-bold">
             {t('قصتنا ورؤيتنا', 'Our Story & Vision')}
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             {t('فن الأفوكادو للعصير والآيس كريم', 'Avocado Art for Juice & Ice Cream')}
           </h1>
-          <p className="text-base sm:text-lg text-[#DCE8D1] max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-[#DCEBD3] max-w-2xl mx-auto leading-relaxed font-normal">
             {t(
               'نضبط جوك ونعرف له - أشهى العصيرات والسلطات والآيس كريم نحضرها لكم بالفواكه الطبيعية ١٠٠٪؜',
               'Setting the mood right with the tastiest juices, salads, and artisanal ice cream prepared 100% naturally'
@@ -34,10 +34,10 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-6 space-y-6">
-            <span className="text-xs font-bold text-[#568C42] tracking-wider uppercase">
+            <span className="text-xs font-bold text-[#A8D900] tracking-wider uppercase">
               {t('من نحن', 'Who We Are')}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#183C2A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#174C2B] tracking-tight">
               {t('سر القوام الكريمي الفريد والطعم الاستثنائي', 'The Secret Behind Our Velvet Texture')}
             </h2>
             <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <div className="pt-2">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-[#245A35] hover:bg-[#163D29] text-white text-xs sm:text-sm font-bold shadow-md transition-all"
+                className="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-gradient-to-r from-[#287A3D] via-[#287A3D] to-[#287A3D] hover:from-[#A8D900] hover:via-[#DFFF00] hover:to-[#DFFF00] text-white hover:text-[#174C2B] text-xs sm:text-sm font-bold shadow-md hover:shadow-lg hover:shadow-[#A8D900]/25 border border-[#287A3D] hover:border-[#A8D900] transition-all duration-300"
               >
                 <span>{t('استكشف قائمتنا الآن', 'Explore Menu Now')}</span>
                 {dir === 'rtl' ? <ArrowLeftIcon size={16} /> : <ArrowRightIcon size={16} />}
@@ -67,7 +67,7 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-full max-w-md rounded-3xl bg-white p-8 border border-[#DCE8D1] shadow-xl text-center space-y-6">
+            <div className="relative w-full max-w-md rounded-3xl bg-white p-8 border border-[#DCEBD3] shadow-xl text-center space-y-6">
               <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
                 <Image
                   src="/logo.png"
@@ -79,20 +79,20 @@ export default function AboutPage() {
                 />
               </div>
               <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="p-4 rounded-2xl bg-[#FAF9F2] border border-[#EDF4E5]">
-                  <span className="text-2xl font-black text-[#245A35] block">+100</span>
+                <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#E8F5D8]">
+                  <span className="text-2xl font-black text-[#287A3D] block">+100</span>
                   <span className="text-xs text-gray-500 font-semibold">{t('صنف طبيعي طازج', 'Fresh Natural Items')}</span>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF9F2] border border-[#EDF4E5]">
-                  <span className="text-2xl font-black text-[#245A35] block">4</span>
+                <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#E8F5D8]">
+                  <span className="text-2xl font-black text-[#287A3D] block">4</span>
                   <span className="text-xs text-gray-500 font-semibold">{t('فروع رئيسية بالرياض', 'Branches in Riyadh')}</span>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF9F2] border border-[#EDF4E5]">
-                  <span className="text-2xl font-black text-[#245A35] block">100%</span>
+                <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#E8F5D8]">
+                  <span className="text-2xl font-black text-[#287A3D] block">100%</span>
                   <span className="text-xs text-gray-500 font-semibold">{t('فواكه طبيعية', 'Natural Fruit')}</span>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF9F2] border border-[#EDF4E5]">
-                  <span className="text-2xl font-black text-[#245A35] flex items-center justify-center gap-1">
+                <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#E8F5D8]">
+                  <span className="text-2xl font-black text-[#287A3D] flex items-center justify-center gap-1">
                     <span>5.0</span>
                     <StarIcon size={18} filled className="text-amber-400" />
                   </span>

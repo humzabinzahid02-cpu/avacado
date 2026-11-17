@@ -12,10 +12,10 @@ export const PromoBanner: React.FC = () => {
   return (
     <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-[#163D29] text-white p-6 sm:p-8 shadow-md">
+        <div className="relative rounded-3xl overflow-hidden bg-[#174C2B] text-white p-6 sm:p-8 shadow-md">
           
           {/* Subtle nature leaf texture */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#113221] via-[#1a442d] to-[#123623] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#174C2B] via-[#287A3D] to-[#174C2B] pointer-events-none opacity-90" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             
@@ -30,7 +30,7 @@ export const PromoBanner: React.FC = () => {
                   sizes="(max-width: 640px) 130px, 180px"
                   quality={85}
                   placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjEzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjEzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRThGNUQ4Ii8+PC9zdmc+"
                   className="object-cover w-full h-full rounded-2xl drop-shadow-xl"
                 />
               </div>
@@ -39,7 +39,7 @@ export const PromoBanner: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                   {t('نكهات تجمعنا', 'Flavors That Bring Us Together')}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#DCE8D1] max-w-md font-normal leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#E8F5D8] max-w-md font-normal leading-relaxed">
                   {t(
                     'من الأفوكادو الطبيعي، إلى العصائر المنعشة.. كل لحظة معه أحلى',
                     'From natural avocado to refreshing juices.. every moment with it is sweeter'
@@ -48,11 +48,11 @@ export const PromoBanner: React.FC = () => {
               </div>
             </div>
 
-            {/* CTA Button (Matching Mockup) */}
+            {/* CTA Button */}
             <div className="shrink-0">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#183C2A] hover:bg-[#204e37] border border-white/20 hover:border-[#A8D957] text-white font-bold text-xs sm:text-sm transition-all"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 hover:bg-[#DFFF00] hover:text-[#174C2B] border border-white/20 hover:border-[#DFFF00] text-white font-bold text-xs sm:text-sm transition-all duration-300"
               >
                 <span>{t('اكتشف المزيد', 'Explore More')}</span>
                 {dir === 'rtl' ? <ArrowLeftIcon size={14} /> : <ArrowRightIcon size={14} />}

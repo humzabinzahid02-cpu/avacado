@@ -29,6 +29,7 @@ export interface Product {
   sizes?: ProductSize[];
   ingredientsAr?: string[];
   ingredientsEn?: string[];
+  calories?: number;
 }
 
 export interface Category {
@@ -59,7 +60,10 @@ export interface Branch {
   addressEn: string;
   phone: string;
   whatsapp: string;
+  whatsappDisplay?: string;
   mapUrl: string;
   openingHoursAr: string;
   openingHoursEn: string;
+  servicesAr?: string;
+  servicesEn?: string;
 }

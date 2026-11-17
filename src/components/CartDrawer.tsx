@@ -35,19 +35,19 @@ export const CartDrawer: React.FC = () => {
         } duration-300`}
       >
         {/* Drawer Header */}
-        <div className="p-5 border-b border-[#DCE8D1] flex items-center justify-between bg-[#FAF9F2]">
+        <div className="p-5 border-b border-[#DCEBD3] flex items-center justify-between bg-white">
           <div className="flex items-center gap-2">
-            <ShoppingBagIcon size={22} className="text-[#245A35]" />
-            <h2 className="text-lg font-black text-[#183C2A]">
+            <ShoppingBagIcon size={22} className="text-[#287A3D]" />
+            <h2 className="text-lg font-black text-[#174C2B]">
               {t('سلة المشتريات', 'Shopping Cart')}
             </h2>
-            <span className="px-2 py-0.5 rounded-full bg-[#EDF4E5] text-[#245A35] text-xs font-bold">
+            <span className="px-2 py-0.5 rounded-full bg-[#E8F5D8] text-[#287A3D] text-xs font-bold border border-[#DCEBD3]">
               {items.length} {t('عناصر', 'items')}
             </span>
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-1.5 rounded-full text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
+            className="p-1.5 rounded-full text-[#68816D] hover:text-[#174C2B] hover:bg-[#E8F5D8] transition-colors"
             aria-label="Close cart"
           >
             <XIcon size={20} />
@@ -55,23 +55,23 @@ export const CartDrawer: React.FC = () => {
         </div>
 
         {/* Free Delivery Banner Progress */}
-        <div className="p-4 bg-[#EDF4E5]/60 border-b border-[#DCE8D1]">
+        <div className="p-4 bg-[#E8F5D8]/50 border-b border-[#DCEBD3]">
           {remainingForFreeDelivery > 0 ? (
-            <p className="text-xs text-[#183C2A] font-semibold mb-2">
+            <p className="text-xs text-[#174C2B] font-semibold mb-2">
               {t(
                 `أضف ${remainingForFreeDelivery.toFixed(2)} ر.س إضافية للحصول على توصيل مجاني!`,
                 `Add ${remainingForFreeDelivery.toFixed(2)} SAR more for free delivery!`
               )}
             </p>
           ) : (
-            <p className="text-xs text-[#245A35] font-bold mb-2 flex items-center gap-1.5">
+            <p className="text-xs text-[#287A3D] font-bold mb-2 flex items-center gap-1.5">
               <MaterialIcon name="celebration" size={16} />
               <span>{t('تهانينا! طلبيتك مؤهلة للتوصيل المجاني بالكامل.', 'Congratulations! You qualify for Free Delivery.')}</span>
             </p>
           )}
-          <div className="w-full bg-[#DCE8D1] rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-[#DCEBD3] rounded-full h-2 overflow-hidden">
             <div
-              className="bg-[#245A35] h-full rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[#287A3D] to-[#A8D900] h-full rounded-full transition-all duration-500"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -81,13 +81,13 @@ export const CartDrawer: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-5 space-y-4">
           {items.length === 0 ? (
             <div className="text-center py-16 space-y-4">
-              <div className="w-20 h-20 mx-auto rounded-full bg-[#EDF4E5] flex items-center justify-center text-[#245A35]">
+              <div className="w-20 h-20 mx-auto rounded-full bg-[#E8F5D8] flex items-center justify-center text-[#287A3D]">
                 <ShoppingBagIcon size={36} />
               </div>
-              <h3 className="text-lg font-bold text-[#183C2A]">
+              <h3 className="text-lg font-bold text-[#174C2B]">
                 {t('سلتك فارغة حالياً', 'Your cart is empty')}
               </h3>
-              <p className="text-xs text-gray-500 max-w-xs mx-auto">
+              <p className="text-xs text-[#68816D] max-w-xs mx-auto">
                 {t(
                   'استكشف قائمتنا المتنوعة من العصائر الطبيعية والمثلجات والحلويات الشهية وأضف ما يعجبك.',
                   'Explore our delicious juices, artisanal ice cream, and desserts and add your favorites.'
@@ -96,7 +96,7 @@ export const CartDrawer: React.FC = () => {
               <Link
                 href="/shop"
                 onClick={() => setIsCartOpen(false)}
-                className="inline-block py-2.5 px-6 rounded-full bg-[#245A35] text-white text-xs font-bold hover:bg-[#163D29] transition-colors"
+                className="inline-block py-2.5 px-6 rounded-full bg-gradient-to-r from-[#287A3D] to-[#A8D900] hover:from-[#A8D900] hover:to-[#DFFF00] text-white hover:text-[#174C2B] text-xs font-bold transition-all shadow-md"
               >
                 {t('تسوق الآن', 'Shop Now')}
               </Link>
@@ -105,10 +105,10 @@ export const CartDrawer: React.FC = () => {
             items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-3 p-3 rounded-2xl bg-[#FAF9F2] border border-[#DCE8D1] relative"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-[#DCEBD3] relative"
               >
                 {/* Thumbnail */}
-                <div className="relative w-18 h-18 rounded-xl bg-white p-1 shrink-0 border border-[#DCE8D1] overflow-hidden flex items-center justify-center">
+                <div className="relative w-18 h-18 rounded-xl bg-white p-1 shrink-0 border border-[#DCEBD3] overflow-hidden flex items-center justify-center">
                   <Image
                     src={item.product.image}
                     alt={item.product.nameAr}
@@ -117,24 +117,26 @@ export const CartDrawer: React.FC = () => {
                     sizes="70px"
                     quality={80}
                     placeholder="blur"
-                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0VERjRFNSIvPjwvc3ZnPg=="
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0U4RjVEOCIvPjwvc3ZnPg=="
                     className="object-contain max-h-16 w-auto"
                   />
                 </div>
 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-bold text-[#183C2A] truncate">
+                  <h4 className="text-sm font-bold text-[#174C2B] truncate">
                     {language === 'ar' ? item.product.nameAr : item.product.nameEn}
                   </h4>
                   {item.selectedSize && (
-                    <span className="text-[11px] text-[#568C42] block">
+                    <span className="text-[11px] text-[#287A3D] block font-semibold">
                       {language === 'ar' ? item.selectedSize.nameAr : item.selectedSize.nameEn}
                     </span>
                   )}
-                  <span className="text-xs font-black text-[#163D29] block mt-1">
-                    {item.itemTotal.toFixed(2)} {t('ر.س', 'SAR')}
-                  </span>
+                  <div className="mt-1">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-[#DFFF00] text-black text-xs font-black shadow-2xs">
+                      {item.itemTotal.toFixed(2)} {t('ر.س', 'SAR')}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Counter & Delete */}
@@ -147,19 +149,19 @@ export const CartDrawer: React.FC = () => {
                     <TrashIcon size={14} />
                   </button>
 
-                  <div className="flex items-center gap-1.5 bg-white rounded-lg border border-[#DCE8D1] px-1.5 py-0.5">
+                  <div className="flex items-center gap-1.5 bg-white rounded-lg border border-[#DCEBD3] px-1.5 py-0.5">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="p-1 text-[#183C2A] hover:bg-gray-100 rounded-md"
+                      className="p-1 text-[#174C2B] hover:bg-[#E8F5D8] rounded-md"
                     >
                       <MinusIcon size={12} />
                     </button>
-                    <span className="text-xs font-bold w-4 text-center text-[#183C2A]">
+                    <span className="text-xs font-bold w-4 text-center text-[#174C2B]">
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="p-1 text-[#183C2A] hover:bg-gray-100 rounded-md"
+                      className="p-1 text-[#174C2B] hover:bg-[#E8F5D8] rounded-md"
                     >
                       <PlusIcon size={12} />
                     </button>
@@ -172,29 +174,29 @@ export const CartDrawer: React.FC = () => {
 
         {/* Drawer Footer */}
         {items.length > 0 && (
-          <div className="p-5 border-t border-[#DCE8D1] bg-[#FAF9F2] space-y-3">
-            <div className="space-y-1.5 text-xs text-gray-600">
+          <div className="p-5 border-t border-[#DCEBD3] bg-[#FFFFFF] space-y-3">
+            <div className="space-y-1.5 text-xs text-[#365B40]">
               <div className="flex justify-between">
                 <span>{t('المجموع الفرعي', 'Subtotal')}</span>
-                <span className="font-bold text-[#183C2A]">{subtotal.toFixed(2)} {t('ر.س', 'SAR')}</span>
+                <span className="font-bold text-[#174C2B]">{subtotal.toFixed(2)} {t('ر.س', 'SAR')}</span>
               </div>
               <div className="flex justify-between">
                 <span>{t('رسوم التوصيل', 'Delivery Fee')}</span>
-                <span className="font-bold text-[#183C2A]">
+                <span className="font-bold text-[#174C2B]">
                   {deliveryFee === 0 ? (
-                    <span className="text-[#245A35] font-black">{t('مجاني', 'FREE')}</span>
+                    <span className="text-[#287A3D] font-black">{t('مجاني', 'FREE')}</span>
                   ) : (
                     `${deliveryFee.toFixed(2)} ${t('ر.س', 'SAR')}`
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-sm pt-2 border-t border-[#DCE8D1] text-[#183C2A]">
+              <div className="flex justify-between text-sm pt-2 border-t border-[#DCEBD3] text-[#174C2B]">
                 <span className="font-black text-base">{t('الإجمالي النهائي', 'Total')}</span>
-                <span className="font-black text-base text-[#163D29]">
+                <span className="font-black text-base text-[#287A3D]">
                   {total.toFixed(2)} {t('ر.س', 'SAR')}
                 </span>
               </div>
-              <span className="text-[10px] text-gray-500 block">
+              <span className="text-[10px] text-[#68816D] block">
                 {t('* شامل ضريبة القيمة المضافة 15%', '* Includes 15% VAT')}
               </span>
             </div>
@@ -203,7 +205,7 @@ export const CartDrawer: React.FC = () => {
               <Link
                 href="/checkout"
                 onClick={() => setIsCartOpen(false)}
-                className="flex-1 py-3 px-4 rounded-xl bg-[#245A35] hover:bg-[#163D29] text-white text-center font-bold text-sm shadow-md hover:shadow-lg transition-all"
+                className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-[#287A3D] to-[#A8D900] hover:from-[#A8D900] hover:to-[#DFFF00] text-white hover:text-[#174C2B] text-center font-bold text-sm shadow-md hover:shadow-lg hover:shadow-[#A8D900]/25 border border-[#287A3D] hover:border-[#A8D900] transition-all duration-300"
               >
                 {t('متابعة الطلب والدفع', 'Proceed to Checkout')}
               </Link>

@@ -11,29 +11,32 @@ import { MaterialIcon } from './MaterialIcon';
 export const FoodDessertsSection: React.FC = () => {
   const { t, dir } = useLanguage();
 
-  // Food, desserts, salads, ice cream products
-  const foods = products.filter(
-    (p) =>
-      p.categorySlug === 'sweets' ||
-      p.categorySlug === 'salads' ||
-      p.categorySlug === 'ice-cream'
-  ).slice(0, 4);
+  // 4 Featured dishes across Fruit Salads, Platters & Ice Cream
+  const featuredFoodSlugs = [
+    'salad-with-clotted-cream-honey',
+    'fakhfakhina',
+    'mango-ice-cream',
+    'fruit-salad',
+  ];
+  const foods = featuredFoodSlugs
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is (typeof products)[0] => Boolean(p));
 
   return (
-    <section className="py-14 bg-white border-y border-[#EDF4E5]">
+    <section className="py-14 bg-white border-y border-[#DCEBD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EDF4E5] text-[#245A35] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5D8] text-[#287A3D] text-xs font-bold mb-2 border border-[#DCEBD3]">
               <MaterialIcon name="cake" size={16} />
               <span>{t('حلويات وسلطات فواكه وآيس كريم', 'Desserts, Fruit Salads & Ice Cream')}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#183C2A] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#174C2B] tracking-tight">
               {t('قائمة المأكولات والحلويات الفاخرة', 'Gourmet Food & Desserts Menu')}
             </h2>
-            <p className="text-xs sm:text-sm text-[#568C42] mt-1">
+            <p className="text-xs sm:text-sm text-[#365B40] mt-1 font-medium">
               {t(
                 'وافل مقرمش بالنوتيلا، كريب ساخن، سلطات فواكه بالعسل والقشطة، وآيس كريم أفوكادو مميز',
                 'Crispy Nutella waffles, delicate crepes, honey clotted-cream fruit bowls, and avocado ice cream'
@@ -42,10 +45,10 @@ export const FoodDessertsSection: React.FC = () => {
           </div>
 
           <Link
-            href="/shop?cat=sweets"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#245A35] hover:text-[#568C42] transition-colors group"
+            href="/menu#fruit-salads"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#287A3D] hover:text-[#A8D900] transition-colors group"
           >
-            <span>{t('استكشف الحلويات والأطعمة', 'Explore All Foods')}</span>
+            <span>{t('استكشف المنيو والأطباق', 'Explore Full Menu')}</span>
             {dir === 'rtl' ? (
               <ArrowLeftIcon size={16} className="transition-transform group-hover:-translate-x-1" />
             ) : (

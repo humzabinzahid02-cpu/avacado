@@ -43,12 +43,12 @@ export const QuickViewModal: React.FC = () => {
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 border border-[#DCE8D1] animate-in zoom-in-95 duration-200">
+      <div className="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 border border-[#DCEBD3] animate-in zoom-in-95 duration-200">
         
         {/* Close Button */}
         <button
           onClick={() => setQuickViewProduct(null)}
-          className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full text-[#68816D] hover:text-[#174C2B] hover:bg-[#E8F5D8] transition-colors"
           aria-label="Close"
         >
           <XIcon size={20} />
@@ -57,7 +57,7 @@ export const QuickViewModal: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           
           {/* Image */}
-          <div className="relative h-64 sm:h-72 w-full rounded-2xl bg-[#FAF9F2] p-2 flex items-center justify-center border border-[#EDF4E5] overflow-hidden">
+          <div className="relative h-64 sm:h-72 w-full rounded-2xl bg-[#E8F5D8]/20 p-2 flex items-center justify-center border border-[#DCEBD3] overflow-hidden">
             <Image
               src={quickViewProduct.image}
               alt={quickViewProduct.nameAr}
@@ -67,7 +67,7 @@ export const QuickViewModal: React.FC = () => {
               quality={85}
               priority
               placeholder="blur"
-              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURGNEU1Ii8+PC9zdmc+"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRThGNUQ4Ii8+PC9zdmc+"
               className="object-cover w-full h-full rounded-xl"
             />
           </div>
@@ -75,10 +75,10 @@ export const QuickViewModal: React.FC = () => {
           {/* Product Details Form */}
           <div className="space-y-4">
             <div>
-              <span className="text-xs font-bold text-[#568C42] block mb-1">
+              <span className="text-xs font-bold text-[#287A3D] block mb-1">
                 {language === 'ar' ? quickViewProduct.categoryNameAr : quickViewProduct.categoryNameEn}
               </span>
-              <h2 className="text-xl sm:text-2xl font-black text-[#183C2A]">
+              <h2 className="text-xl sm:text-2xl font-black text-[#174C2B]">
                 {language === 'ar' ? quickViewProduct.nameAr : quickViewProduct.nameEn}
               </h2>
               <div className="flex items-center gap-1.5 mt-1 text-xs text-amber-500">
@@ -88,14 +88,14 @@ export const QuickViewModal: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#365B40] leading-relaxed">
               {language === 'ar' ? quickViewProduct.descriptionAr : quickViewProduct.descriptionEn}
             </p>
 
             {/* Size Selector if available */}
             {quickViewProduct.sizes && quickViewProduct.sizes.length > 0 && (
               <div className="space-y-2 pt-2">
-                <label className="text-xs font-bold text-[#183C2A] block">
+                <label className="text-xs font-bold text-[#174C2B] block">
                   {t('اختر الحجم / السعة:', 'Select Size / Volume:')}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -105,12 +105,12 @@ export const QuickViewModal: React.FC = () => {
                       onClick={() => setSelectedSize(size)}
                       className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all text-start flex items-center justify-between ${
                         selectedSize?.id === size.id
-                          ? 'border-[#245A35] bg-[#EDF4E5] text-[#163D29] ring-1 ring-[#245A35]'
-                          : 'border-[#DCE8D1] bg-white text-gray-700 hover:border-[#568C42]'
+                          ? 'border-[#287A3D] bg-[#E8F5D8] text-[#174C2B] ring-1 ring-[#287A3D]'
+                          : 'border-[#DCEBD3] bg-white text-[#365B40] hover:border-[#A8D900]'
                       }`}
                     >
                       <span>{language === 'ar' ? size.nameAr : size.nameEn}</span>
-                      <span className="text-[#245A35] font-black">{size.price.toFixed(2)}</span>
+                      <span className="bg-[#DFFF00] text-black font-black px-2 py-0.5 rounded-md text-xs">{size.price.toFixed(2)}</span>
                     </button>
                   ))}
                 </div>
@@ -118,30 +118,30 @@ export const QuickViewModal: React.FC = () => {
             )}
 
             {/* Price & Quantity & Add to Cart */}
-            <div className="pt-4 border-t border-[#EDF4E5] space-y-4">
+            <div className="pt-4 border-t border-[#DCEBD3] space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-gray-400 block">{t('السعر الإجمالي', 'Total Price')}</span>
-                  <div className="flex items-baseline gap-1 text-2xl font-black text-[#163D29]">
+                  <span className="text-xs text-[#68816D] block mb-1">{t('السعر الإجمالي', 'Total Price')}</span>
+                  <div className="inline-flex items-baseline gap-1.5 px-3 py-1 rounded-xl bg-[#DFFF00] text-black font-black text-2xl shadow-2xs">
                     <span>{(currentPrice * quantity).toFixed(2)}</span>
-                    <span className="text-xs font-bold text-[#568C42]">{t('ر.س', 'SAR')}</span>
+                    <span className="text-xs font-bold text-black">{t('ر.س', 'SAR')}</span>
                   </div>
                 </div>
 
                 {/* Quantity Buttons */}
-                <div className="flex items-center gap-2 bg-[#FAF9F2] rounded-xl border border-[#DCE8D1] p-1">
+                <div className="flex items-center gap-2 bg-white rounded-xl border border-[#DCEBD3] p-1">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#183C2A] hover:bg-gray-100"
+                    className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#174C2B] hover:bg-[#E8F5D8]"
                   >
                     <MinusIcon size={14} />
                   </button>
-                  <span className="w-8 text-center font-bold text-sm text-[#183C2A]">
+                  <span className="w-8 text-center font-bold text-sm text-[#174C2B]">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#183C2A] hover:bg-gray-100"
+                    className="w-8 h-8 rounded-lg bg-white shadow-xs flex items-center justify-center text-[#174C2B] hover:bg-[#E8F5D8]"
                   >
                     <PlusIcon size={14} />
                   </button>
@@ -150,7 +150,7 @@ export const QuickViewModal: React.FC = () => {
 
               <button
                 onClick={handleAdd}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#245A35] hover:bg-[#163D29] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-98"
+                className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#287A3D] to-[#A8D900] hover:from-[#A8D900] hover:to-[#DFFF00] text-white hover:text-[#174C2B] font-bold text-sm shadow-md hover:shadow-lg hover:shadow-[#A8D900]/25 border border-[#287A3D] hover:border-[#A8D900] transition-all duration-300 flex items-center justify-center gap-2 active:scale-98"
               >
                 <ShoppingBagIcon size={18} />
                 <span>{t('أضف إلى السلة', 'Add to Cart')}</span>
